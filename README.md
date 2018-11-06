@@ -25,17 +25,21 @@ If you are using Android Studio, right click on your project add select New Modu
 #### Retrieve Pureprofile Android SDK through maven()
 Add maven() repository to your app build.gradle (top level one):
 
-```allprojects {
+```
+allprojects {
     repositories {
         maven { url "http://localhost:8081/artifactory/libs-release-local" }
     }
-}```
+}
+```
 
 Retrieve Pureprofile through maven() by adding the following line in your project build.gradle (not the top level one, the one under 'app') in dependencies section:
 
-```dependencies {
+```
+dependencies {
   implementation 'com.pureprofile.sdk:droid-sdk:1.0.21'
-}```
+}
+```
 
 
 
