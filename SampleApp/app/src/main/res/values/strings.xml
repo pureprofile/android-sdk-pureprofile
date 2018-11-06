@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Sample App</string>
+    <string name="action_settings">Settings</string>
+
+    <!--SdkActivity activity-->
+    <string name="no_panel_err">Please select a panel to continue to SDK.</string>
+    <string name="panel_login">Opening SDK. Please wait for login to complete</string>
+</resources>
