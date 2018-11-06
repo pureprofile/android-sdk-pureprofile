@@ -76,10 +76,20 @@ Pureprofile uses these permissions to get and send survey requests and responses
 After you link your project to all dependencies you can easily initialize the SDK. Once you added all dependencies then you can call Pureprofile SDK init() in onCreate() ( just after super.onCreate(savedInstanceState) ) passing the authentication token you received from the login process and you are ready to go.
 Below is a sample:
 ```
-mInstance = SdkApp.init(this, "token");
+@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mInstance = SdkApp.init(this, Token.getToken(this));
+    }
 ```
 After initializing the SDK you have to destroy the instance ( mInstance ) in onDestroy() ( just after super.onDestroy() ). 
 Below is a sample:
 ```
-mInstance.destroy();
+@Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        mInstance.destroy();
+    }
 ```
