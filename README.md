@@ -73,7 +73,7 @@ You should also add the following lines in your AndroidManifest.xml
 Pureprofile uses these permissions to get and send survey requests and responses to Pureprofile.
 
 #### 6. Call Pureprofile SDK initialization function in onCreate() of your Activity to activate SDK
-After you link your project to all dependencies you can easily initialize the SDK. Once you added all dependencies then you can call Pureprofile SDK init() in onCreate() ( just after super.onCreate(savedInstanceState) ) passing the authentication token you received from the login process and you are ready to go.
+After you link your project to all dependencies you can easily initialize the SDK. Your activity must extend the **SDKActivity**. Once you added all dependencies then you can call Pureprofile SDK init() in onCreate() ( just after super.onCreate(savedInstanceState) ) passing the authentication token you received from the login process and you are ready to go.
 Below is a sample:
 ```
 @Override
