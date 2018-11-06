@@ -11,4 +11,32 @@
 > Requirements: Pureprofile Android SDK works with Android 16 (4.1) and above.
 
 ## Steps detail
-####1. Register as a Pureprofile partner, create a panel and copy panel key
+
+#### 1. Register as a Pureprofile partner, create a panel and copy panel key
+[Contact Pureprofile](https://www.pureprofile.com). Create a new panel with your account manager and copy then the given **panel key** for this app in order to use later on, when initializing **Pureprofile SDK** within your code.
+
+#### 2. Download Pureprofile SDK aar file and import to your project
+Download Pureprofile Android SDK aar or reference it through maven().
+#### Download Pureprofile SDK .aar file
+Add Pureprofile SDK .aar file to your project libraries
+
+If you are using Android Studio, right click on your project add select New Module. Then select Import .JAR or .AAR Package option and from the file browser locate Pureprofile aar file. Right click again on your project and in Module Dependencies tab choose to add Pureprofile module that you recently added, as a dependency.
+
+#### Retrieve Pureprofile Android SDK through maven()
+Add maven() repository to your app build.gradle (top level one):
+
+```allprojects {
+    repositories {
+        maven { url "http://localhost:8081/artifactory/libs-release-local" }
+    }
+}```
+
+Retrieve Pureprofile through maven() by adding the following line in your project build.gradle (not the top level one, the one under 'app') in dependencies section:
+
+```dependencies {
+  implementation 'com.pureprofile.sdk:droid-sdk:1.0.21'
+}```
+
+
+
+
