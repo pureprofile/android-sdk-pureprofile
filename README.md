@@ -58,4 +58,28 @@ Also you'll need to add YouTube libfrary to your **libs** folder of your current
 1. Download YouTube library from [Google](https://developers.google.com/youtube/android/player/downloads/)
 2. Paste it in libs folder inside app folder of project
 
+#### 4. Import Pureprofile SDK classes
+Import Pureprofile classes with the following lines at the top of your Activity’s class file:
+```
+import com.pureprofile.sdk.SdkApp;
+import com.pureprofile.sdk.ui.helpers.SdkActivity;
+```
 
+#### 5. Add permissions to AndroidManifest.xml
+You should also add the following lines in your AndroidManifest.xml
+```
+<uses-permission android:name="android.permission.INTERNET"/>
+```
+Pureprofile uses these permissions to get and send survey requests and responses to Pureprofile.
+
+#### 6. Call Pureprofile SDK initialization function in onCreate() of your Activity to activate SDK
+After you link your project to all dependencies you can easily initialize the SDK. Once you added all dependencies then you can call Pureprofile SDK init() in onCreate() ( just after super.onCreate(savedInstanceState) ) passing the authentication token you received from the login process and you are ready to go.
+Below is a sample:
+```
+mInstance = SdkApp.init(this, "token");
+```
+After initializing the SDK you have destroy the instance ( mInstance ) in onDestroy() ( just after super.onDestroy() ). 
+Below is a sample:
+```
+mInstance.destroy();
+```
