@@ -80,7 +80,7 @@ Below is a sample:
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mInstance = SdkApp.init(this, Token.getToken(this));
+        mInstance = SdkApp.init(this, "token");
     }
 ```
 After initializing the SDK you have to destroy the instance ( mInstance ) in onDestroy() ( just after super.onDestroy() ). 
