@@ -5,4 +5,8 @@
     <!--SdkActivity activity-->
     <string name="no_panel_err">Please select a panel to continue to SDK.</string>
     <string name="panel_login">Opening SDK. Please wait for login to complete</string>
+
+    <!--Main activity-->
+    <string name="main_welcome">Welcome!</string>
+    <string name="main_welcome_msg">This is a demo application to experience Pureprofile campaign feed and surveys on an actual mobile device.</string>
 </resources>
