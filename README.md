@@ -9,3 +9,6 @@
 6. Call Pureprofile SDK initialization function in onCreate() of your Activity to activate SDK
 
 > Requirements: Pureprofile Android SDK works with Android 16 (4.1) and above.
+
+## Steps detail
+####1. Register as a Pureprofile partner, create a panel and copy panel key
