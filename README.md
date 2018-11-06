@@ -78,7 +78,7 @@ Below is a sample:
 ```
 mInstance = SdkApp.init(this, "token");
 ```
-After initializing the SDK you have destroy the instance ( mInstance ) in onDestroy() ( just after super.onDestroy() ). 
+After initializing the SDK you have to destroy the instance ( mInstance ) in onDestroy() ( just after super.onDestroy() ). 
 Below is a sample:
 ```
 mInstance.destroy();
