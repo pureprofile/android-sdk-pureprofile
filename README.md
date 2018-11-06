@@ -41,6 +41,18 @@ dependencies {
 }
 ```
 
-
+#### 3. Import Pureprofile SDK dependencies
+If you are adding the library by downloading .aar file then you need to add the folowwing dependencies to your project:
+If you are using gradle you can easily add in your dependencies:
+```
+dependencies {
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.volley:volley:1.1.0'
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.facebook.fresco:fresco:1.11.0'
+    implementation 'com.facebook.fresco:animated-gif:1.11.0'
+}
+```
 
 
