@@ -42,7 +42,7 @@ dependencies {
 ```
 
 #### 3. Import Pureprofile SDK dependencies
-If you are adding the library by downloading .aar file then you need to add the folowwing dependencies to your project:
+If you are adding the library by downloading .aar file then you need to add the folowing dependencies to your project:
 If you are using gradle you can easily add in your dependencies:
 ```
 dependencies {
@@ -54,5 +54,8 @@ dependencies {
     implementation 'com.facebook.fresco:animated-gif:1.11.0'
 }
 ```
+Also you'll need to add YouTube libfrary to your **libs** folder of your current project. 
+1. Download YouTube library from [Google](https://developers.google.com/youtube/android/player/downloads/)
+2. Paste it in libs folder inside app folder of project
 
 
