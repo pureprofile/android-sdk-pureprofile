@@ -1,6 +1,6 @@
 # android-sdk-pureprofile
 
-## Quick guide of Android SDK Pureprofile
+#### Quick guide of Android SDK Pureprofile
 1. Register as a Pureprofile partner, create a panel and copy panel key
 2. Download Pureprofile SDK aar file and import to your project
 3. Import Pureprofile SDK dependencies
