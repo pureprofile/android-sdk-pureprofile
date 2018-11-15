@@ -19,7 +19,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven { url "http://localhost:8081/artifactory/libs-release-local" }
+        maven { url "http://android-sdk.pureprofile.com/artifactory/libs-release-local" }
     }
 }
 
