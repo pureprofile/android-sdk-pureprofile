@@ -5,6 +5,7 @@
     <!--SdkActivity activity-->
     <string name="no_panel_err">Please select a panel to continue to SDK.</string>
     <string name="panel_login">Opening SDK. Please wait for login to complete</string>
+    <string name="payment_info">Payment with id: %1$s, amount %2$f was created on %3$s.</string>
 
     <!--Main activity-->
     <string name="main_welcome">Welcome!</string>
