@@ -7,6 +7,7 @@
 4. Import Pureprofile SDK classes
 5. Add permissions to AndroidManifest.xml
 6. Call Pureprofile SDK initialization function in onCreate() of your Activity to activate SDK
+7. Implement **PaymentListener** in your sdk activity to process payments received from surveys.
 
 > Requirements: Pureprofile Android SDK works with Android 16 (4.1) and above.
 
@@ -48,6 +49,7 @@ If you are using gradle you can easily add in your dependencies:
 dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.volley:volley:1.1.0'
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.facebook.fresco:fresco:1.11.0'
@@ -62,7 +64,9 @@ Also you'll need to add YouTube libfrary to your **libs** folder of your current
 Import Pureprofile classes with the following lines at the top of your Activity’s class file:
 ```
 import com.pureprofile.sdk.SdkApp;
+import com.pureprofile.sdk.events.PaymentEvent;
 import com.pureprofile.sdk.ui.helpers.SdkActivity;
+import com.pureprofile.sdk.ui.listeners.PaymentListener;
 ```
 
 #### 5. Add permissions to AndroidManifest.xml
@@ -73,23 +77,26 @@ You should also add the following lines in your AndroidManifest.xml
 Pureprofile uses these permissions to get and send survey requests and responses to Pureprofile.
 
 #### 6. Call Pureprofile SDK initialization function in onCreate() of your Activity to activate SDK
-After you link your project to all dependencies you can easily initialize the SDK. Your activity must extend the **SDKActivity**. Once you added all dependencies then you can call Pureprofile SDK init() in onCreate() ( just after super.onCreate(savedInstanceState) ) passing the authentication token you received from the login process and you are ready to go.
-Below is a sample:
+After you link your project to all dependencies you can easily initialize the SDK. Your activity must extend the **com.pureprofile.sdk.ui.helpers.SdkActivity**. Once you added all dependencies then you can call Pureprofile SDK init() in onCreate() ( just after super.onCreate(savedInstanceState) ) passing the authentication token you received from the login process and you are ready to go. To start the sdk just call run() passing the activity context. If you require to test the sdk in test mode simply set the test environment by calling setTestEnv() after you init the sdk. Below is a sample:
 ```
-@Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mInstance = SdkApp.init(this, "token");
+        SdkApp.getInstance().init(this, Token.getToken(this));
+        SdkApp.getInstance().registerPaymentListener(this);
+        SdkApp.getInstance().setTestEnv(this, !Cache.getStoredEnvKey(this));
+        SdkApp.getInstance().run(this);
     }
 ```
-After initializing the SDK you have to destroy the instance ( mInstance ) in onDestroy() ( just after super.onDestroy() ). 
-Below is a sample:
-```
-@Override
-    protected void onDestroy() {
-        super.onDestroy();
 
-        mInstance.destroy();
+#### 7. Implement PaymentListener in your sdk activity to process payments received from surveys
+Register your activity to implement the **PaymentListener** and listen for payment events. Simply call **registerPaymentListener()** and override **onProcessPayment()** that returns a com.pureprofile.sdk.events.PaymentEvent object with the payment details (date of payment, payment unique key, payment). Below is a sample:
+```
+    @Override
+    public void onProcessPayment(PaymentEvent event) {
+        // Get payment event and process your payment
+        Toast.makeText(this, "Added payment: " + String.valueOf(event.payment),
+                Toast.LENGTH_SHORT).show();
     }
 ```
