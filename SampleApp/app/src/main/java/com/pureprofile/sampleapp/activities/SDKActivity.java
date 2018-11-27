@@ -23,8 +23,8 @@ public class SDKActivity extends SdkActivity implements PaymentListener {
     @Override
     public void onProcessPayment(PaymentEvent event) {
         // Handle payments received from Pureprofile paid surveys.
-        Toast.makeText(this, String.format(getResources().getString(
-                R.string.payment_info), event.key, event.payment, event.date),
+        Toast.makeText(this, String.format(
+                getResources().getString(R.string.payment_info), event.key, event.payment, event.date),
                 Toast.LENGTH_SHORT)
                 .show();
     }
