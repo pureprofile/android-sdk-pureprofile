@@ -1,5 +1,5 @@
 ## Overview
-Pureprofile is a survey platform that delivers surveys instead of ads through mobile apps. The Pureprofile iOS SDK is an easy to use library for developers who want to integrate Purerprofile's surveying platform into their Android apps.
+Pureprofile is a survey platform that delivers surveys instead of ads through mobile apps. The Pureprofile Android SDK is an easy to use library for developers who want to integrate Pureprofile's surveying platform into their Android apps.
 
 ### Requirements
 Minimum sdk version is 16.
@@ -15,8 +15,9 @@ minSdkVersion 16
 3. Import Pureprofile SDK dependencies
 4. Import Pureprofile SDK classes
 5. Add permissions to AndroidManifest.xml
-6. Call Pureprofile SDK initialization function in onCreate() of your Activity to activate SDK
-7. Implement **PaymentListener** in your sdk activity to process payments received from surveys.
+6. Use Login API to obtain a login token to initialize the SDK
+7. Call Pureprofile SDK initialization function in onCreate() of your Activity to activate SDK
+8. Implement **PaymentListener** in your sdk activity to process payments received from surveys.
 
 > Requirements: Pureprofile Android SDK works with Android 16 (4.1) and above.
 
@@ -85,7 +86,17 @@ You should also add the following lines in your AndroidManifest.xml
 ```
 Pureprofile uses these permissions to get and send survey requests and responses to Pureprofile.
 
-#### 6. Call Pureprofile SDK initialization function in onCreate() of your Activity to activate SDK
+#### 6. Use Login API to obtain a login token to initialize the SDK
+The first step before accessing the Pureprofile SDK is to obtain a login token from Pureprofile. You can do that by calling Pureprofile's login API where you have to pass a hash with the following keys in the POST call:
+```
+"email"
+"panelKey"
+"panelSecret"
+"userKey"
+```
+The email key is the user's email or id. For all the rest you need to get in touch with Pureprofile to setup a partner account and provide the keys that are unique for each partner or app. For testing purposes Pureprofile has a public partner account which can be used for running the sample app or for evalution purposes for integrating the SDK with your app. A full example of logging in as well as the public account keys can be found in the source code of the sample app. Please note that storing sensitive data in the source code is not considered good practice and you should setup an intermediate system which will be used for logging in with Pureprofile. See the image below for more.
+
+#### 7. Call Pureprofile SDK initialization function in onCreate() of your Activity to activate SDK
 After you link your project to all dependencies you can easily initialize the SDK. Your activity must extend the **com.pureprofile.sdk.ui.helpers.SdkActivity**. Once you added all dependencies then you can call Pureprofile SDK init() in onCreate() ( just after super.onCreate(savedInstanceState) ) passing the authentication token you received from the login process and you are ready to go. To start the sdk just call run() passing the activity context. If you require to test the sdk in test mode simply set the test environment by calling setTestEnv() after you init the sdk. Below is a sample:
 ```
     @Override
@@ -99,7 +110,7 @@ After you link your project to all dependencies you can easily initialize the SD
     }
 ```
 
-#### 7. Implement PaymentListener in your sdk activity to process payments received from surveys
+#### 8. Implement PaymentListener in your sdk activity to process payments received from surveys
 Register your activity to implement the **PaymentListener** and listen for payment events. Simply call **registerPaymentListener()** and override **onProcessPayment()** that returns a com.pureprofile.sdk.events.PaymentEvent object with the payment details (date of payment, payment unique key, payment). Below is a sample:
 ```
     public class PaymentEvent {
