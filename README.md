@@ -102,6 +102,12 @@ After you link your project to all dependencies you can easily initialize the SD
 #### 7. Implement PaymentListener in your sdk activity to process payments received from surveys
 Register your activity to implement the **PaymentListener** and listen for payment events. Simply call **registerPaymentListener()** and override **onProcessPayment()** that returns a com.pureprofile.sdk.events.PaymentEvent object with the payment details (date of payment, payment unique key, payment). Below is a sample:
 ```
+    public class PaymentEvent {
+        public String date;
+        public String key;
+        public Float payment;
+    }
+    
     @Override
     public void onProcessPayment(PaymentEvent event) {
         // Get payment event and process your payment
