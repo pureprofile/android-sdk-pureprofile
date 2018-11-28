@@ -1,3 +1,12 @@
+## Overview
+Pureprofile is a survey platform that delivers surveys instead of ads through mobile apps. The Pureprofile iOS SDK is an easy to use library for developers who want to integrate Purerprofile's surveying platform into their Android apps.
+
+### Requirements
+Minimum sdk version is 16.
+```
+minSdkVersion 16
+```
+
 # android-sdk-pureprofile
 
 #### Quick guide of Android SDK Pureprofile
