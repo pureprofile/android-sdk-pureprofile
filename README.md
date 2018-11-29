@@ -87,13 +87,30 @@ You should also add the following lines in your AndroidManifest.xml
 Pureprofile uses these permissions to get and send survey requests and responses to Pureprofile.
 
 #### 6. Use Login API to obtain a login token to initialize the SDK
-The first step before accessing the Pureprofile SDK is to obtain a login token from Pureprofile. You can do that by calling Pureprofile's login API where you have to pass a hash with the following keys in the POST call:
+The first step before accessing the Pureprofile SDK is to obtain a login token from Pureprofile. You can do that by calling Pureprofile's login API.
+
+Production service:
+
 ```
-"email"
-"panelKey"
-"panelSecret"
-"userKey"
+POST https://pp-auth-api.pureprofile.com/api/v1/panel/login
 ```
+
+Service accepts and returns a JSON body, as specified:
+
+| Property name | Type          | Mandatory | Description 
+|---------------|---------------|:---------:|-------------
+| panelKey      | String(UUID)  | Yes       | key which belongs to the panel you're trying to login user for
+| panelSecret   | String(UUID)  | Yes       | secret key assigned to panel (never reveal this to client app)
+| userKey       | String        | Yes       | unique identifier that does never change for a user
+| email         | String(Email) |           | 
+
+Response body:
+
+| Property name | Type          | Description 
+|---------------|---------------|-------------
+| ppToken       | String(UUID)  | Token provided to SDK so it can communicate with Pureprofile's servers
+
+
 The email key is the user's email or id. For all the rest you need to get in touch with Pureprofile to setup a partner account and provide the keys that are unique for each partner or app. For testing purposes Pureprofile has a public partner account which can be used for running the sample app or for evalution purposes for integrating the SDK with your app. A full example of logging in as well as the public account keys can be found in the source code of the sample app. Please note that storing sensitive data in the source code is not considered good practice and you should setup an intermediate system which will be used for logging in with Pureprofile. See the image below for more.
 
 #### 7. Call Pureprofile SDK initialization function in onCreate() of your Activity to activate SDK
