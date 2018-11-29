@@ -65,9 +65,7 @@ public class GsonRequest<T> extends Request<T> {
     @Override
     public byte[] getBody() throws AuthFailureError {
         try {
-            if (params != null) {
-                return params.toString().getBytes(getParamsEncoding());
-            }
+            return params != null ? params.toString().getBytes(getParamsEncoding()) : super.getBody();
         } catch (UnsupportedEncodingException e) {
             String ERROR_TAG = "Params body error";
             Log.v(ERROR_TAG, e.getMessage());

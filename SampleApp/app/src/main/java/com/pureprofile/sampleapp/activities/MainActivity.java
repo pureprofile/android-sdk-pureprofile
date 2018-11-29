@@ -1,13 +1,11 @@
 package com.pureprofile.sampleapp.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -23,10 +21,10 @@ import static com.pureprofile.sampleapp.services.AuthService.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    protected String PANEL_USER_EMAIL = "gs+49@freee.gr";
-    protected String PANEL_USER_KEY = "1acf5f79-1b82-456f-aa85-b1e7c58fca88";
-    protected String PANEL_SECRET = "d0b2981c-3dfb-4855-8523-d94caad8da28";
-    protected String PANEL_KEY = "e598da88-6749-4394-a2cd-662be94e9bec";
+    protected String USER_EMAIL = "sdk_user@pureprofile.com";
+    protected String USER_KEY = "1acf5f79-1b82-456f-aa85-b1e7c58fca88";
+    protected String PANEL_SECRET = "c0e6b322-f654-4583-8202-3136504e7843";
+    protected String PANEL_KEY = "a0213585-b4ca-49d0-8a3a-0c3ce156e781";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(v -> {
             createToast(this.getString(R.string.panel_login));
-            loginRequest(this, PANEL_KEY);
+            loginRequest();
         });
     }
 
@@ -48,20 +46,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -70,27 +57,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Login to sdk using demo user.
+     * Make a POST login request and return a Token to provide to the SDK
+     * so it can communicate with Pureprofile's servers.
+     *
+     * This Token has to be obtained for every user in a secure, server to server communication.
+     * We recommend this service to be called from server after the authenticity of client
+     * has been verified. Calling this service from client application would be insecure as
+     * secret key would be compromised and attacker could potentially use this key to obtain
+     * ppToken for any number of users.
+     *
+     * panelKey - key which belongs to the panel you're trying to login user for
+     * panelSecret - secret key assigned to panel (never reveal this to client app)
+     * userKey - unique identifier that does never change for a user
+     * email - optional email of the user
      */
-    private void loginRequest(Context context, String panelKey) {
+    private void loginRequest() {
         JsonObject params = new JsonObject();
-        params.addProperty("panelKey", panelKey);
+        params.addProperty("panelKey", PANEL_KEY);
         params.addProperty("panelSecret", PANEL_SECRET);
-        params.addProperty("userKey", PANEL_USER_KEY);
-        params.addProperty("email", PANEL_USER_EMAIL);
+        params.addProperty("userKey", USER_KEY);
+        params.addProperty("email", USER_EMAIL);
         String url = SERVICE_ENDPOINT + LOGIN;
 
-        GsonRequest<Login> request = new GsonRequest<>(Request.Method.POST, url, Login.class, null, params,
+        GsonRequest<Login> request = new GsonRequest<>(
+                Request.Method.POST, url, Login.class, null, params,
                 response -> {
                     String token = response.ppToken;
                     if (token != null) {
-                        Token.setToken(context, token);
+                        Token.setToken(this, token);
                         startSdk();
                     }
                 },
                 (error -> Log.e("error", error.toString())));
 
-        ApiManager.getInstance(context).addToRequestQueue(request, "login request");
+        ApiManager.getInstance(this).addToRequestQueue(request, "login request");
     }
 
     private void startSdk() {
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, SDKActivity.class);
             startActivity(intent);
         } catch (Exception e) {
-            Log.d("splash error", e.getMessage());
+            Log.d("Launch error", e.getMessage());
         }
     }
 }

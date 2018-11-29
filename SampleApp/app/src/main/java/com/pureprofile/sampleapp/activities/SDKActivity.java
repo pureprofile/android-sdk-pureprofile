@@ -1,6 +1,7 @@
 package com.pureprofile.sampleapp.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.pureprofile.sampleapp.R;
@@ -16,16 +17,17 @@ public class SDKActivity extends SdkActivity implements PaymentListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SdkApp.getInstance().run(this, Token.getToken(this));
+        SdkApp.getInstance().init(this, Token.getToken(this));
         SdkApp.getInstance().registerPaymentListener(this);
+        SdkApp.getInstance().setTestEnv(this, true);
+        SdkApp.getInstance().run(this);
     }
 
     @Override
     public void onProcessPayment(PaymentEvent event) {
         // Handle payments received from Pureprofile paid surveys.
-        Toast.makeText(this, String.format(
-                getResources().getString(R.string.payment_info), event.key, event.payment, event.date),
-                Toast.LENGTH_SHORT)
-                .show();
+        Log.i("payment", String.format(
+                getResources().getString(
+                        R.string.payment_info), event.key, event.payment, event.date));
     }
 }
