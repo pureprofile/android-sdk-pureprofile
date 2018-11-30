@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected String USER_EMAIL = "sdk_user@pureprofile.com";
     protected String USER_KEY = "1acf5f79-1b82-456f-aa85-b1e7c58fca88";
     protected String PANEL_SECRET = "c0e6b322-f654-4583-8202-3136504e7843";
-    protected String PANEL_KEY = "a0213585-b4ca-49d0-8a3a-0c3ce156e781";
+    protected String PANEL_KEY = "f986e3ac-32c9-42e9-944d-9801dbe28d97";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +77,9 @@ public class MainActivity extends AppCompatActivity {
         params.addProperty("panelSecret", PANEL_SECRET);
         params.addProperty("userKey", USER_KEY);
         params.addProperty("email", USER_EMAIL);
-        String url = SERVICE_ENDPOINT + LOGIN;
 
         GsonRequest<Login> request = new GsonRequest<>(
-                Request.Method.POST, url, Login.class, null, params,
+                Request.Method.POST, LOGIN_SERVICE, Login.class, null, params,
                 response -> {
                     String token = response.ppToken;
                     if (token != null) {
