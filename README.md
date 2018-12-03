@@ -17,14 +17,14 @@ minSdkVersion 16
 5. Add permissions to AndroidManifest.xml
 6. Use Login API to obtain a login token to initialize the SDK
 7. Call Pureprofile SDK initialization function in onCreate() of your Activity to activate SDK
-8. Implement **PaymentListener** in your sdk activity to process payments received from surveys.
+8. Implement ```PaymentListener``` in your sdk activity to process payments received from surveys.
 
 > Requirements: Pureprofile Android SDK works with Android 16 (4.1) and above.
 
 ## Steps detail
 
 #### 1. Register as a Pureprofile partner, create a panel and copy panel key
-[Contact Pureprofile](https://www.pureprofile.com). Create a new panel with your account manager and copy then the given **panel key** for this app in order to use later on, when initializing **Pureprofile SDK** within your code.
+[Contact pureprofile](product@pureprofile.com). Create a new panel with your account manager and copy then the given ```panel key``` for this app in order to use later on, when initializing Pureprofile SDK within your code.
 
 #### 2. Download Pureprofile SDK aar file and import to your project
 Download Pureprofile Android SDK aar or reference it through maven().
@@ -66,7 +66,7 @@ dependencies {
     implementation 'com.facebook.fresco:animated-gif:1.11.0'
 }
 ```
-Also you'll need to add YouTube libfrary to your **libs** folder of your current project. 
+Also you'll need to add YouTube libfrary to your ``libs`` folder of your current project. 
 1. Download YouTube library from [Google](https://developers.google.com/youtube/android/player/downloads/)
 2. Paste it in libs folder inside app folder of project
 
@@ -87,7 +87,7 @@ You should also add the following lines in your AndroidManifest.xml
 Pureprofile uses these permissions to get and send survey requests and responses to Pureprofile.
 
 #### 6. Use Login API to obtain a login token to initialize the SDK
-The first step before accessing the Pureprofile SDK is to obtain a login token from Pureprofile. You can do that by calling Pureprofile's login API.
+The first step before accessing the Pureprofile SDK is to obtain a login token from Pureprofile. You can do that by calling Pureprofile's login API where you have to pass the following parameters in the POST call:
 
 Production service:
 
@@ -102,7 +102,7 @@ Service accepts and returns a JSON body, as specified:
 | panelKey      | String(UUID)  | Yes       | key which belongs to the panel you're trying to login user for
 | panelSecret   | String(UUID)  | Yes       | secret key assigned to panel (never reveal this to client app)
 | userKey       | String        | Yes       | unique identifier that does never change for a user
-| email         | String(Email) |           | 
+| email         | String(Email) |           | email that can be used to match user
 
 Response body:
 
@@ -111,10 +111,16 @@ Response body:
 | ppToken       | String(UUID)  | Token provided to SDK so it can communicate with Pureprofile's servers
 
 
-To obtain a **panelKey** and **panelSecret** you need to get in touch with Pureprofile to setup a partner account and provide the keys that are unique for each partner or app. For testing purposes Pureprofile has a public partner account which can be used for running the sample app or for evalution purposes for integrating the SDK with your app. A full example of logging in as well as the public account keys can be found in the source code of the sample app. We recommend this service to be called from server after the authenticity of client has been verified. Calling this service from client application would be insecure as secret key would be compromised and attacker could potentially use this key to obtain ppToken for any number of users. See the image below.
+The values of panelKey and panelSecret are provided by Pureprofile and are used to identify you as Pureprofile's partner. [Get in touch with us](product@pureprofile.com) to find out how to obtain the panel keys. 
+
+The ```userKey``` is used for uniquely identifying each one of your users. It is recommended that a UUID is used as ```userKey``` value and that this UUID never changes so that we can always identify your users in our systems in order to offer them better targeted surveys with maximum yield. There is no restriction though as to the type of user key that is used which means that your user's email or phone number or any other identifier is also accepted. Beware though that in this case if the user identifier ever changes, for example when your user changes his/her email, the next time the user with the changed identifier is logged in to Pureprofile, a new Pureprofile user will be created which means that all targeting information we hold for the said user will no longer be usable and will have to be recreated. The ```email``` key is optional and can be used to match a ```userKey``` with an email.
+
+For testing and evaluation purposes Pureprofile provides a public partner account which can be used for running the sample app or for integrating the SDK with your app for evaluation purposes. A full example of how to log in a user, as well as the public partner keys can be found in the source code of the sample app. Bare in mind though that storing sensitive data (such as the panel key and secret) in the source files is not considered good practice and we therefore strongly suggest to employ a secure, server to server communication for obtaining the ppToken from Pureprofile. In this case the login service is called from your server after the authenticity of the client has been verified. See the diagram below for a depiction on how to login via an intermediate secure service.
+
+![alt text](https://devtools.pureprofile.com/surveys/ios/assets/server2server_login.png)
 
 #### 7. Call Pureprofile SDK initialization function in onCreate() of your Activity to activate SDK
-After you link your project to all dependencies you can easily initialize the SDK. Your activity must extend the **com.pureprofile.sdk.ui.helpers.SdkActivity**. Once you added all dependencies then you can call Pureprofile SDK init() in onCreate() ( just after super.onCreate(savedInstanceState) ) passing the authentication token you received from the login process and you are ready to go. To start the sdk just call run() passing the activity context. If you require to test the sdk in test mode simply set the test environment by calling setTestEnv() after you init the sdk. Below is a sample:
+After you link your project to all dependencies you can easily initialize the SDK. Your activity must extend the ```com.pureprofile.sdk.ui.helpers.SdkActivity```. Once you added all dependencies then you can call Pureprofile SDK init() in onCreate() ( just after super.onCreate(savedInstanceState) ) passing the authentication token you received from the login process and you are ready to go. To start the sdk just call run() passing the activity context. If you require to test the sdk in test mode simply set the test environment by calling setTestEnv() after you init the sdk. Below is a sample:
 ```
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +134,7 @@ After you link your project to all dependencies you can easily initialize the SD
 ```
 
 #### 8. Implement PaymentListener in your sdk activity to process payments received from surveys
-Register your activity to implement the **PaymentListener** and listen for payment events. Simply call **registerPaymentListener()** and override **onProcessPayment()** that returns a com.pureprofile.sdk.events.PaymentEvent object with the payment details (date of payment, payment unique key, payment). Below is a sample:
+Register your activity to implement the ```PaymentListener``` and listen for payment events. Simply call ```registerPaymentListener()``` and override ```onProcessPayment()``` that returns a com.pureprofile.sdk.events.PaymentEvent object with the payment details (date of payment, payment unique key, payment). Below is a sample:
 ```
     public class PaymentEvent {
         public String date;
