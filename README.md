@@ -24,7 +24,7 @@ minSdkVersion 16
 ## Steps detail
 
 #### 1. Register as a Pureprofile partner, create a panel and copy panel key
-[Contact Pureprofile](mailto:product@pureprofile.com). Create a new panel with your account manager and copy then the given ```panel key``` for this app in order to use later on, when initializing Pureprofile SDK within your code.
+[Contact Pureprofile](mailto:product@pureprofile.com). Create a new panel with your account manager and copy then the given ```panelKey``` for this app in order to use later on, when initializing Pureprofile SDK within your code.
 
 #### 2. Download Pureprofile SDK aar file and import to your project
 Download Pureprofile Android SDK aar or reference it through maven().
