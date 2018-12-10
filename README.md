@@ -15,8 +15,8 @@ minSdkVersion 16
 3. Import Pureprofile SDK dependencies
 4. Import Pureprofile SDK classes
 5. Add permissions to AndroidManifest.xml
-6. Use Login API to obtain a login token to initialize the SDK
-7. Call Pureprofile SDK initialization function in onCreate() of your Activity to activate SDK
+6. Use Login API to obtain a login token to initialise the SDK
+7. Call Pureprofile SDK initialisation function in onCreate() of your Activity to activate SDK
 8. Implement ```PaymentListener``` in your sdk activity to process payments received from surveys.
 
 > Requirements: Pureprofile Android SDK works with Android 16 (4.1) and above.
@@ -24,7 +24,7 @@ minSdkVersion 16
 ## Steps detail
 
 #### 1. Register as a Pureprofile partner, create a panel and copy panel key
-[Contact Pureprofile](mailto:product@pureprofile.com). Create a new panel with your account manager and copy then the given ```panelKey``` for this app in order to use later on, when initializing Pureprofile SDK within your code.
+[Contact Pureprofile](mailto:product@pureprofile.com). Create a new panel with your account manager and copy then the given ```panelKey``` for this app in order to use later on, when initialising Pureprofile SDK within your code.
 
 #### 2. Download Pureprofile SDK aar file and import to your project
 Download Pureprofile Android SDK aar or reference it through maven().
@@ -53,7 +53,7 @@ dependencies {
 ```
 
 #### 3. Import Pureprofile SDK dependencies
-If you are adding the library by downloading .aar file then you need to add the folowing dependencies to your project:
+If you are adding the library by downloading .aar file then you need to add the following dependencies to your project:
 If you are using gradle you can easily add in your dependencies:
 ```
 dependencies {
@@ -66,7 +66,7 @@ dependencies {
     implementation 'com.facebook.fresco:animated-gif:1.11.0'
 }
 ```
-Also you'll need to add YouTube libfrary to your ``libs`` folder of your current project. 
+Also you'll need to add YouTube library to your ``libs`` folder of your current project. 
 1. Download YouTube library from [Google](https://developers.google.com/youtube/android/player/downloads/)
 2. Paste it in libs folder inside app folder of project
 
@@ -86,7 +86,7 @@ You should also add the following lines in your AndroidManifest.xml
 ```
 Pureprofile uses these permissions to get and send survey requests and responses to Pureprofile.
 
-#### 6. Use Login API to obtain a login token to initialize the SDK
+#### 6. Use Login API to obtain a login token to initialise the SDK
 The first step before accessing the Pureprofile SDK is to obtain a login token from Pureprofile. You can do that by calling Pureprofile's login API where you have to pass the following parameters in the POST call:
 
 Production service:
@@ -119,8 +119,8 @@ For testing and evaluation purposes Pureprofile provides a public partner accoun
 
 ![alt text](https://devtools.pureprofile.com/surveys/ios/assets/server2server_login.png)
 
-#### 7. Call Pureprofile SDK initialization function in onCreate() of your Activity to activate SDK
-After you link your project to all dependencies you can easily initialize the SDK. Your activity must extend the ```com.pureprofile.sdk.ui.helpers.SdkActivity```. Once you added all dependencies then you can call Pureprofile SDK init() in onCreate() ( just after super.onCreate(savedInstanceState) ) passing the authentication token you received from the login process and you are ready to go. To start the sdk just call run() passing the activity context. If you require to test the sdk in test mode simply set the test environment by calling setTestEnv() after you init the sdk. Below is a sample:
+#### 7. Call Pureprofile SDK initialisation function in onCreate() of your Activity to activate SDK
+After you link your project to all dependencies you can easily initialise the SDK. Your activity must extend the ```com.pureprofile.sdk.ui.helpers.SdkActivity```. Once you added all dependencies then you can call Pureprofile SDK init() in onCreate() ( just after super.onCreate(savedInstanceState) ) passing the authentication token you received from the login process and you are ready to go. To start the sdk just call run() passing the activity context. If you require to test the sdk in test mode simply set the test environment by calling setTestEnv() after you init the sdk. Below is a sample:
 ```
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,7 +149,7 @@ Register your activity to implement the ```PaymentListener``` and listen for pay
                 Toast.LENGTH_SHORT).show();
     }
 ```
-The transactions API can also be used for quering Pureprofile about a transaction. The payment key (as provided in the PaymentEvent will have to be passed as a parameter to the end-point:
+The transactions API can also be used for querying Pureprofile about a transaction. The payment key (as provided in the PaymentEvent will have to be passed as a parameter to the end-point:
 ```
 GET https://staging-ah-api.pureprofile.com/api/v1/pp-au/transactions/<payment-uuid> HTTP/1.1
 
