@@ -12,7 +12,7 @@ minSdkVersion 16
 #### Quick guide of Android SDK Pureprofile
 1. Register as a Pureprofile partner, create a panel and copy panel key
 2. Download Pureprofile SDK aar file and import to your project
-3. Import Pureprofile SDK dependencies
+3. Pureprofile SDK dependencies
 4. Import Pureprofile SDK classes
 5. Add permissions to AndroidManifest.xml
 6. Use Login API to obtain a login token to initialise the SDK
@@ -24,7 +24,7 @@ minSdkVersion 16
 ## Steps detail
 
 #### 1. Register as a Pureprofile partner, create a panel and copy panel key
-[Contact Pureprofile](mailto:product@pureprofile.com). Create a new panel with your account manager and copy then the given ```panelKey``` for this app in order to use later on, when initialising Pureprofile SDK within your code.
+[Contact Pureprofile](mailto:product@pureprofile.com). Create a new panel with your account manager and copy the ```panelKey``` in order to use later on, when initialising Pureprofile SDK within your code.
 
 #### 2. Download Pureprofile SDK aar file and import to your project
 Download Pureprofile Android SDK aar or reference it through maven().
@@ -52,9 +52,8 @@ dependencies {
 }
 ```
 
-#### 3. Import Pureprofile SDK dependencies
-If you are adding the library by downloading .aar file then you need to add the following dependencies to your project:
-If you are using gradle you can easily add in your dependencies:
+#### 3. Pureprofile SDK dependencies
+The sdk uses the following dependencies:
 ```
 dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
@@ -68,7 +67,7 @@ dependencies {
 ```
 Also you'll need to add YouTube library to your ``libs`` folder of your current project. 
 1. Download YouTube library from [Google](https://developers.google.com/youtube/android/player/downloads/)
-2. Paste it in libs folder inside app folder of project
+2. Paste it in libs folder inside app folder of your project
 
 #### 4. Import Pureprofile SDK classes
 Import Pureprofile classes with the following lines at the top of your Activity’s class file:
@@ -80,13 +79,13 @@ import com.pureprofile.sdk.ui.listeners.PaymentListener;
 ```
 
 #### 5. Add permissions to AndroidManifest.xml
-You should also add the following lines in your AndroidManifest.xml
+Add the following permissions in your AndroidManifest.xml.
 ```
 <uses-permission android:name="android.permission.INTERNET"/>
 ```
-Pureprofile uses these permissions to get and send survey requests and responses to Pureprofile.
+Pureprofile uses these permissions to receive and send survey requests and responses to Pureprofile.
 
-#### 6. Use Login API to obtain a login token to initialise the SDK
+#### 6. Use Login API and obtain a login token to initialise the SDK
 The first step before accessing the Pureprofile SDK is to obtain a login token from Pureprofile. You can do that by calling Pureprofile's login API where you have to pass the following parameters in the POST call:
 
 Production service:
@@ -119,7 +118,7 @@ For testing and evaluation purposes Pureprofile provides a public partner accoun
 
 ![alt text](https://devtools.pureprofile.com/surveys/ios/assets/server2server_login.png)
 
-#### 7. Call Pureprofile SDK initialisation function in onCreate() of your Activity to activate SDK
+#### 7. Call Pureprofile SDK initialisation functions in onCreate() of your Activity to activate SDK
 After you link your project to all dependencies you can easily initialise the SDK. Your activity must extend the ```com.pureprofile.sdk.ui.helpers.SdkActivity```. Once you added all dependencies then you can call Pureprofile SDK init() in onCreate() ( just after super.onCreate(savedInstanceState) ) passing the authentication token you received from the login process and you are ready to go. To start the sdk just call run() passing the activity context. If you require to test the sdk in test mode simply set the test environment by calling setTestEnv() after you init the sdk. Below is a sample:
 ```
     @Override
@@ -128,7 +127,7 @@ After you link your project to all dependencies you can easily initialise the SD
 
         SdkApp.getInstance().init(this, Token.getToken(this));
         SdkApp.getInstance().registerPaymentListener(this);
-        SdkApp.getInstance().setTestEnv(this, !Cache.getStoredEnvKey(this));
+        SdkApp.getInstance().setTestEnv(this, false);
         SdkApp.getInstance().run(this);
     }
 ```
