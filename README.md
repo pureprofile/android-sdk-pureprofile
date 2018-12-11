@@ -39,7 +39,7 @@ Add maven() repository to your app build.gradle (top level one):
 ```
 allprojects {
     repositories {
-        maven { url "http://localhost:8081/artifactory/libs-release-local" }
+        maven { url "http://android-sdk.pureprofile.com/artifactory/libs-release-local" }
     }
 }
 ```
@@ -48,7 +48,7 @@ Retrieve Pureprofile through maven() by adding the following line in your projec
 
 ```
 dependencies {
-  implementation 'com.pureprofile.sdk:droid-sdk:1.0.21'
+  implementation 'com.pureprofile.sdk:droid-sdk:1.0.9'
 }
 ```
 
