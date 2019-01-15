@@ -87,7 +87,9 @@ public class MainActivity extends AppCompatActivity {
                         startSdk();
                     }
                 },
-                (error -> Log.e("error", error.toString())));
+                (error -> {
+                    Log.e("error", error.toString());
+                }));
 
         ApiManager.getInstance(this).addToRequestQueue(request, "login request");
     }

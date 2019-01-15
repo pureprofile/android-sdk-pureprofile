@@ -2,7 +2,6 @@ package com.pureprofile.sampleapp.activities;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.pureprofile.sampleapp.R;
 import com.pureprofile.sdk.SdkApp;
