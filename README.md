@@ -53,7 +53,7 @@ dependencies {
 ```
 
 #### Proguard rules
-You need to add rules proguard-rules.pro when generating apk when minifyEnabled is true.
+You need to add rules proguard-rules.pro when generating apk when ``minifyEnabled true``.
 ```
 # Pureprofile sdk classes
 -dontwarn com.pureprofile.sdk.**
