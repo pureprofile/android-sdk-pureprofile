@@ -59,7 +59,7 @@ You need to add rules proguard-rules.pro when generating apk when ``minifyEnable
 -dontwarn com.pureprofile.sdk.**
 -keep class com.pureprofile.sdk.** { *; }
 
-##--------------- Begin: proguard configuration if using Gson for your application classes ----------
+##-------- Begin: proguard configuration if using Gson for your application classes ----------
 # Your application classes that will be serialized/deserialized over Gson for sdk login
 -keep class com.pureprofile.sampleapp.model.** { *; }
 
