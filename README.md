@@ -48,8 +48,33 @@ Retrieve Pureprofile through maven() by adding the following line in your projec
 
 ```
 dependencies {
-  implementation 'com.pureprofile.sdk:droid-sdk:1.0.9'
+  implementation 'com.pureprofile.sdk:droid-sdk:1.0.11'
 }
+```
+
+#### Proguard rules
+You need to add rules proguard-rules.pro when generating apk when minifyEnabled is true.
+```
+# Pureprofile sdk classes
+-dontwarn com.pureprofile.sdk.**
+-keep class com.pureprofile.sdk.** { *; }
+
+# Your application classes that will be serialized/deserialized over Gson for sdk login
+-keep class com.pureprofile.sampleapp.model.** { *; }
+
+##---------------Begin: proguard configuration for Gson  ----------
+# Prevent proguard from stripping interface information from TypeAdapterFactory,
+# JsonSerializer, JsonDeserializer instances (so they can be used in @JsonAdapter)
+-keep class * implements com.google.gson.TypeAdapterFactory
+-keep class * implements com.google.gson.JsonSerializer
+-keep class * implements com.google.gson.JsonDeserializer
+
+# Gson uses generic type information stored in a class file when working with fields. Proguard
+# removes such information by default, so configure it to keep all of it.
+-keepattributes Signature
+
+# For using GSON @Expose annotation
+-keepattributes *Annotation*
 ```
 
 #### 3. Pureprofile SDK dependencies
