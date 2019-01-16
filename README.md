@@ -59,7 +59,7 @@ You need to add rules proguard-rules.pro when generating apk when ``minifyEnable
 -dontwarn com.pureprofile.sdk.**
 -keep class com.pureprofile.sdk.** { *; }
 
-##-------- Begin: proguard configuration if using Gson for your application classes ----------
+##-------- Begin: proguard configuration if using Gson for your application classes when logging to Pureprofile ----------
 # Your application classes that will be serialized/deserialized over Gson for sdk login
 -keep class com.pureprofile.sampleapp.model.** { *; }
 
@@ -72,9 +72,6 @@ You need to add rules proguard-rules.pro when generating apk when ``minifyEnable
 # Gson uses generic type information stored in a class file when working with fields. Proguard
 # removes such information by default, so configure it to keep all of it.
 -keepattributes Signature
-
-# For using GSON @Expose annotation
--keepattributes *Annotation*
 ```
 
 #### 3. Pureprofile SDK dependencies
