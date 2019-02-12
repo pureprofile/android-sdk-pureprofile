@@ -140,6 +140,19 @@ For testing and evaluation purposes Pureprofile provides a public partner accoun
 
 ![alt text](https://devtools.pureprofile.com/surveys/ios/assets/server2server_login.png)
 
+#### Membership limit reached
+As part of the login process it is possible to encounter the 'membership limit reached' error case which is triggered when the number of your users that have already used at least once the SDK has reached the limit that Pureprofile can accept at the time. The error case is signified with HTTP error code 403 and the body of the response contains error code panel_membership_limit_reached as it can be seen in the example below. An example of how to handle the error in your application can be found in the source code of the sample app. The membership limit is configurable and when you get in touch with Pureprofile you can discuss and set it according to your membership requirements.
+```
+ {
+  "statusCode": 403,
+  "error": "Forbidden",
+  "message": "We're unable to register you for the panel at this time as the limit of panel members has been reached.",
+  "data": {
+    "code": "panel_membership_limit_reached"
+  }
+}
+```
+
 #### 7. Call Pureprofile SDK initialisation functions in onCreate() of your Activity to activate SDK
 After you link your project to all dependencies you can easily initialise the SDK. Your activity must extend the ```com.pureprofile.sdk.ui.helpers.SdkActivity```. Once you added all dependencies then you can call Pureprofile SDK init() in onCreate() ( just after super.onCreate(savedInstanceState) ) passing the authentication token you received from the login process and you are ready to go. To start the sdk just call run() passing the activity context. If you require to test the sdk in test mode simply set the test environment by calling setTestEnv() after you init the sdk. Below is a sample:
 ```
