@@ -10,12 +10,16 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.pureprofile.sampleapp.R;
+import com.pureprofile.sampleapp.model.Error;
 import com.pureprofile.sampleapp.model.Login;
 import com.pureprofile.sampleapp.model.Token;
 import com.pureprofile.sampleapp.services.ApiManager;
 import com.pureprofile.sampleapp.services.GsonRequest;
+
+import java.io.UnsupportedEncodingException;
 
 import static com.pureprofile.sampleapp.services.AuthService.*;
 
@@ -88,7 +92,19 @@ public class MainActivity extends AppCompatActivity {
                     }
                 },
                 (error -> {
-                    Log.e("error", error.toString());
+                    try {
+                        String json = new String(error.networkResponse.data,
+                                this.getString(R.string.charset));
+                        Gson gson = new Gson();
+                        Error r = gson.fromJson(json, Error.class);
+                        if (r.statusCode == 403) {
+                            if (r.data.code.equalsIgnoreCase("panel_membership_limit_reached")) {
+                                createToast(r.message);
+                            }
+                        }
+                    } catch (UnsupportedEncodingException e) {
+                        Log.d("unsupported_encoding", e.getMessage());
+                    }
                 }));
 
         ApiManager.getInstance(this).addToRequestQueue(request, "login request");
