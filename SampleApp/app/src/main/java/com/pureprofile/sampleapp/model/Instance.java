@@ -1,9 +1,10 @@
 package com.pureprofile.sampleapp.model;
 
+import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Model used by Volley for mapping Panel json
@@ -13,7 +14,7 @@ public class Instance implements Parcelable {
     public String code;
     public String key;
     public String name;
-    public ArrayList<Panel> panels;
+    public HashMap<String, Panel> panels;
 
     public Instance(Parcel in) {
         String[] stringValues = new String[3];
@@ -22,8 +23,8 @@ public class Instance implements Parcelable {
         this.key = stringValues[1];
         this.name = stringValues[2];
 
-        this.panels = new ArrayList<>();
-        in.readTypedList(this.panels, Panel.CREATOR);
+        this.panels = new HashMap<>();
+        in.readBundle(getClass().getClassLoader());
     }
 
     @Override
@@ -33,13 +34,15 @@ public class Instance implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("panels", this.panels);
         parcel.writeStringArray(new String[] {
                 this.code,
                 this.key,
                 this.name
         });
 
-        parcel.writeTypedList(this.panels);
+        parcel.writeBundle(bundle);
     }
 
     public static final Creator<Instance> CREATOR = new Creator<Instance>() {

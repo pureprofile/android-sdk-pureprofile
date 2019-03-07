@@ -101,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
                             if (r.data.code.equalsIgnoreCase("panel_membership_limit_reached")) {
                                 createToast(r.message);
                             }
+                        } else {
+                            createToast(getString(R.string.generic_error));
                         }
                     } catch (UnsupportedEncodingException e) {
                         Log.d("unsupported_encoding", e.getMessage());

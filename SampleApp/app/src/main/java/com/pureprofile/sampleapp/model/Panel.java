@@ -12,44 +12,30 @@ import com.google.gson.annotations.SerializedName;
 public class Panel implements Parcelable {
     public String name;
     public String guid;
-    @SerializedName("color_primary")
-    public String colorPrimary;
-    @SerializedName("color_primary_dark")
-    public String colorPrimaryDark;
-    @SerializedName("color_accent")
-    public String colorAccent;
-    @SerializedName("color_cta")
-    public String colorCta;
-    @SerializedName("logo_url")
-    public String logoUrl;
-    @SerializedName("font_color_title")
-    public String fontColorTitle;
-    @SerializedName("font_color_badge")
-    public String fontColorBadge;
+    @SerializedName("app_theme")
+    public AppTheme appTheme;
     @SerializedName("exchange_rate")
     public Float exchangeRate;
+    @SerializedName("currency_code")
+    public String currencyCode;
 
-//    add selection variable
+    //    add selection variable
     public boolean isChecked = false;
 
     public Panel(Parcel in) {
-        String[] stringValues = new String[9];
+        String[] stringValues = new String[3];
         in.readStringArray(stringValues);
 
         this.name = stringValues[0];
         this.guid = stringValues[1];
-        this.colorPrimary = stringValues[2];
-        this.colorPrimaryDark = stringValues[3];
-        this.colorAccent = stringValues[4];
-        this.colorCta = stringValues[5];
-        this.logoUrl = stringValues[6];
-        this.fontColorTitle = stringValues[7];
-        this.fontColorBadge = stringValues[8];
+        this.currencyCode = stringValues[2];
 
         this.exchangeRate = in.readFloat();
 
         boolean[] boolValues = new boolean[1];
         in.readBooleanArray(boolValues);
+
+        this.appTheme = in.readParcelable(AppTheme.class.getClassLoader());
     }
 
     @Override
@@ -62,17 +48,13 @@ public class Panel implements Parcelable {
         parcel.writeStringArray(new String[] {
                 this.name,
                 this.guid,
-                this.colorPrimary,
-                this.colorPrimaryDark,
-                this.colorAccent,
-                this.colorCta,
-                this.logoUrl,
-                this.fontColorTitle,
-                this.fontColorBadge
+                this.currencyCode
         });
 
         parcel.writeFloat(this.exchangeRate);
         parcel.writeBooleanArray(new boolean[] { this.isChecked });
+
+        parcel.writeParcelable(this.appTheme, 0);
     }
 
     public static final Parcelable.Creator<Panel> CREATOR = new Parcelable.Creator<Panel>() {

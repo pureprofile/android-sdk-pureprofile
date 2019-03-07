@@ -14,4 +14,5 @@
     <string name="main_welcome_msg">This is a demo application to experience Pureprofile campaign
         feed and surveys on an actual mobile device.</string>
     <string name="charset">UTF-8</string>
+    <string name="generic_error">Oops! Something went wrong!</string>
 </resources>
