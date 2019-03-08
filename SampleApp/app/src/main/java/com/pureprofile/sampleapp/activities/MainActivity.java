@@ -92,20 +92,19 @@ public class MainActivity extends AppCompatActivity {
                     }
                 },
                 (error -> {
-                    try {
-                        String json = new String(error.networkResponse.data,
-                                this.getString(R.string.charset));
-                        Gson gson = new Gson();
-                        Error r = gson.fromJson(json, Error.class);
-                        if (r.statusCode == 403) {
+                    if (error.networkResponse.statusCode == 403) {
+                        try {
+                            String json = new String(error.networkResponse.data, getString(R.string.charset));
+                            Gson gson = new Gson();
+                            Error r = gson.fromJson(json, Error.class);
                             if (r.data.code.equalsIgnoreCase("panel_membership_limit_reached")) {
                                 createToast(r.message);
                             }
-                        } else {
-                            createToast(getString(R.string.generic_error));
+                        } catch (UnsupportedEncodingException e) {
+                            Log.d("unsupported_encoding", e.getMessage());
                         }
-                    } catch (UnsupportedEncodingException e) {
-                        Log.d("unsupported_encoding", e.getMessage());
+                    } else {
+                        createToast(getResources().getString(R.string.generic_error));
                     }
                 }));
 
