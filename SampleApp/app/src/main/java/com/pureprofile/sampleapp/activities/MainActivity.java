@@ -99,9 +99,11 @@ public class MainActivity extends AppCompatActivity {
                             Error r = gson.fromJson(json, Error.class);
                             if (r.data.code.equalsIgnoreCase("panel_membership_limit_reached")) {
                                 createToast(r.message);
+                            } else {
+                                createToast(getResources().getString(R.string.generic_error));
                             }
                         } catch (UnsupportedEncodingException e) {
-                            Log.d("unsupported_encoding", e.getMessage());
+                            createToast(getResources().getString(R.string.generic_error));
                         }
                     } else {
                         createToast(getResources().getString(R.string.generic_error));
