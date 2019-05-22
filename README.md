@@ -154,7 +154,7 @@ As part of the login process it is possible to encounter the 'membership limit r
 ```
 
 #### 7. Call Pureprofile SDK initialisation functions in onCreate() of your Activity to activate SDK
-After you link your project to all dependencies you can easily initialise the SDK. Your activity must extend the ```com.pureprofile.sdk.ui.helpers.SdkActivity```. Once you added all dependencies then you can call Pureprofile SDK init() in onCreate() ( just after super.onCreate(savedInstanceState) ) passing the authentication token you received from the login process and you are ready to go. To start the sdk just call run() passing the activity context. If you require to test the sdk in test mode simply set the test environment by calling setTestEnv() after you init the sdk. Below is a sample:
+After you link your project to all dependencies you can easily initialise the SDK. Once you added all dependencies then you can call Pureprofile SDK init() in onCreate() ( just after super.onCreate(savedInstanceState) ) passing the authentication token you received from the login process and you are ready to go. To start the sdk just call run() passing the activity context and a flag true if you want to display the SDK splash screen. If you require to test the sdk in test mode simply set the test environment by calling setTestEnv() after you init the sdk. Below is a sample:
 ```
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,7 +163,7 @@ After you link your project to all dependencies you can easily initialise the SD
         SdkApp.getInstance().init(this, Token.getToken(this));
         SdkApp.getInstance().registerPaymentListener(this);
         SdkApp.getInstance().setTestEnv(this, false);
-        SdkApp.getInstance().run(this);
+        SdkApp.getInstance().run(this, true);
     }
 ```
 
