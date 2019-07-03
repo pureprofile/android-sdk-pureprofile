@@ -18,7 +18,7 @@ public class SDKActivity extends AppCompatActivity implements PaymentListener {
 
         SdkApp.getInstance().init(this, Token.getToken(this));
         SdkApp.getInstance().registerPaymentListener(this);
-        SdkApp.getInstance().setTestEnv(this, false);
+        SdkApp.getInstance().setTestEnv(this, true);
         SdkApp.getInstance().hasNavigation(false);
         SdkApp.getInstance().run(this, true);
     }

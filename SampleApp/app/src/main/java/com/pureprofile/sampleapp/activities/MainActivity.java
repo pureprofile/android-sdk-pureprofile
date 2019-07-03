@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -18,6 +20,9 @@ import com.pureprofile.sampleapp.model.Login;
 import com.pureprofile.sampleapp.model.Token;
 import com.pureprofile.sampleapp.services.ApiManager;
 import com.pureprofile.sampleapp.services.GsonRequest;
+import com.pureprofile.sdk.SdkApp;
+import com.pureprofile.sdk.model.Badge;
+import com.pureprofile.sdk.ui.listeners.BadgeListener;
 
 import java.io.UnsupportedEncodingException;
 
@@ -25,10 +30,12 @@ import static com.pureprofile.sampleapp.services.AuthService.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    protected String USER_EMAIL = "sdk_user@pureprofile.com";
-    protected String USER_KEY = "1acf5f79-1b82-456f-aa85-b1e7c58fca88";
-    protected String PANEL_SECRET = "c0e6b322-f654-4583-8202-3136504e7843";
-    protected String PANEL_KEY = "f986e3ac-32c9-42e9-944d-9801dbe28d97";
+    protected String USER_EMAIL = "gsylaios+10@pureprofile.com";
+    protected String USER_KEY = "ea4928cf-0917-45e7-b4c7-ab9329943a71";
+    protected String PANEL_SECRET = "d0b2981c-3dfb-4855-8523-d94caad8da28";
+    protected String PANEL_KEY = "e598da88-6749-4394-a2cd-662be94e9bec";
+
+    private TextView mBadgeText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +45,13 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
+        mBadgeText = findViewById(R.id.badge_text);
+        loginRequest();
         fab.setOnClickListener(v -> {
             createToast(this.getString(R.string.panel_login));
-            loginRequest();
+            if (Token.getToken(this) != null) {
+                startSdk();
+            }
         });
     }
 
@@ -88,7 +99,15 @@ public class MainActivity extends AppCompatActivity {
                     String token = response.ppToken;
                     if (token != null) {
                         Token.setToken(this, token);
-                        startSdk();
+                        SdkApp.getInstance().init(this, Token.getToken(this));
+                        SdkApp.getInstance().setTestEnv(this, true);
+                        SdkApp.getInstance().getBadgeValues(this, new BadgeListener() {
+                            @Override
+                            public void onSuccess(Badge badge) {
+                                mBadgeText.setText(String.valueOf(badge.total));
+                                mBadgeText.setVisibility(View.VISIBLE);
+                            }
+                        });
                     }
                 },
                 (error -> {
