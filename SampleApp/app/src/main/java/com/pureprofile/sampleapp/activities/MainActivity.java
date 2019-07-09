@@ -21,8 +21,6 @@ import com.pureprofile.sampleapp.model.Token;
 import com.pureprofile.sampleapp.services.ApiManager;
 import com.pureprofile.sampleapp.services.GsonRequest;
 import com.pureprofile.sdk.SdkApp;
-import com.pureprofile.sdk.model.Badge;
-import com.pureprofile.sdk.ui.listeners.BadgeListener;
 
 import java.io.UnsupportedEncodingException;
 
@@ -101,12 +99,9 @@ public class MainActivity extends AppCompatActivity {
                         Token.setToken(this, token);
                         SdkApp.getInstance().init(this, Token.getToken(this));
                         SdkApp.getInstance().setTestEnv(this, true);
-                        SdkApp.getInstance().getBadgeValues(this, new BadgeListener() {
-                            @Override
-                            public void onSuccess(Badge badge) {
-                                mBadgeText.setText(String.valueOf(badge.total));
-                                mBadgeText.setVisibility(View.VISIBLE);
-                            }
+                        SdkApp.getInstance().getBadgeValues(this, badge -> {
+                            mBadgeText.setText(String.valueOf(badge.total));
+                            mBadgeText.setVisibility(View.VISIBLE);
                         });
                     }
                 },
