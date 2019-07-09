@@ -201,7 +201,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-#### 9. Count of available surveys
+#### 9. Count of available/paid surveys
 In order to obtain the total number of available surveys and total number of paid surveys you can use the following API call after you initialize the SDK:
 ```
 SdkApp.getInstance().init(this, Token.getToken(this));
