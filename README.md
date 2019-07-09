@@ -200,3 +200,17 @@ HTTP/1.1 200 OK
     "ppToken": "pureprofile-token"
 }
 ```
+
+#### 9. Count of available surveys
+In order to obtain the total number of available surveys and total number of paid surveys you can use the following API call after you initialize the SDK:
+```
+SdkApp.getInstance().init(this, Token.getToken(this));
+SdkApp.getInstance().getBadgeValues(this, new BadgeListener() {
+    @Override
+    public void onSuccess(Badge badge) {
+        int total = badge.total;
+        int paid = badge.paid;
+    }
+});
+```
+Through the callback you will receive two integers, one for all available surveys and one for the count of paid surveys.
