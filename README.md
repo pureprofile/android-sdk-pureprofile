@@ -48,7 +48,7 @@ Retrieve Pureprofile through maven() by adding the following line in your projec
 
 ```
 dependencies {
-  implementation 'com.pureprofile.sdk:droid-sdk:1.0.28'
+  implementation 'com.pureprofile.sdk:droid-sdk:1.0.32'
 }
 ```
 
@@ -78,9 +78,10 @@ You need to add rules proguard-rules.pro when generating apk when ``minifyEnable
 The sdk uses the following dependencies:
 ```
 dependencies {
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
-    implementation 'com.android.support:design:28.0.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.facebook.fresco:fresco:1.11.0'
