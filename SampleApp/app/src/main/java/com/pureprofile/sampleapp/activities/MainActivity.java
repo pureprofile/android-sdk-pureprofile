@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                     if (token != null) {
                         Token.setToken(this, token);
                         SdkApp.getInstance().init(this, Token.getToken(this));
-                        SdkApp.getInstance().setTestEnv(this, true);
+                        SdkApp.getInstance().setEnv(this, "prod");
                         SdkApp.getInstance().getBadgeValues(this, badge -> {
                             mBadgeText.setText(String.valueOf(badge.total));
                             mBadgeText.setVisibility(View.VISIBLE);
