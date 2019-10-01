@@ -39,7 +39,7 @@ Add maven() repository to your app build.gradle (top level one):
 ```
 allprojects {
     repositories {
-        maven { url "http://android-sdk.pureprofile.com/artifactory/libs-release-local" }
+        maven { url "https://android-sdk.pureprofile.com/artifactory/libs-release-local" }
     }
 }
 ```
@@ -48,7 +48,7 @@ Retrieve Pureprofile through maven() by adding the following line in your projec
 
 ```
 dependencies {
-  implementation 'com.pureprofile.sdk:droid-sdk:1.0.32'
+  implementation 'com.pureprofile.sdk:droid-sdk:1.0.35'
 }
 ```
 
@@ -97,7 +97,6 @@ Import Pureprofile classes with the following lines at the top of your Activityâ
 ```
 import com.pureprofile.sdk.SdkApp;
 import com.pureprofile.sdk.events.PaymentEvent;
-import com.pureprofile.sdk.ui.helpers.SdkActivity;
 import com.pureprofile.sdk.ui.listeners.PaymentListener;
 ```
 
@@ -155,7 +154,7 @@ As part of the login process it is possible to encounter the 'membership limit r
 ```
 
 #### 7. Call Pureprofile SDK initialisation functions in onCreate() of your Activity to activate SDK
-After you link your project to all dependencies you can easily initialise the SDK. Once you added all dependencies then you can call Pureprofile SDK init() in onCreate() ( just after super.onCreate(savedInstanceState) ) passing the authentication token you received from the login process and you are ready to go. To start the sdk just call run() passing the activity context and a flag true if you want to display the SDK splash screen. If you require to test the sdk in test mode simply set the test environment by calling setTestEnv() after you init the sdk. Below is a sample:
+After you link your project to all dependencies you can easily initialise the SDK. Once you added all dependencies then you can call Pureprofile SDK init() in onCreate() ( just after super.onCreate(savedInstanceState) ) passing the authentication token you received from the login process and you are ready to go. To start the sdk just call run() passing the activity context and a flag true if you want to display the SDK splash screen. If you require to test the sdk in development mode simply set the environment by calling setEnv(this, "dev") after you init the sdk. For production set the env to "prod" Below is a sample:
 ```
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,7 +162,7 @@ After you link your project to all dependencies you can easily initialise the SD
 
         SdkApp.getInstance().init(this, Token.getToken(this));
         SdkApp.getInstance().registerPaymentListener(this);
-        SdkApp.getInstance().setTestEnv(this, false);
+        SdkApp.getInstance().setEnv(this, "prod");
         SdkApp.getInstance().run(this, true);
     }
 ```
