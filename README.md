@@ -48,7 +48,7 @@ Retrieve Pureprofile through maven() by adding the following line in your projec
 
 ```
 dependencies {
-  implementation 'com.pureprofile.sdk:droid-sdk:1.0.35'
+  implementation 'com.pureprofile.sdk:droid-sdk:1.0.37'
 }
 ```
 
