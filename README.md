@@ -48,7 +48,7 @@ Retrieve Pureprofile through maven() by adding the following line in your projec
 
 ```
 dependencies {
-  implementation 'com.pureprofile.sdk:droid-sdk:1.0.37'
+  implementation 'com.pureprofile.sdk:droid-sdk:1.0.58'
 }
 ```
 
@@ -107,7 +107,15 @@ Add the following permissions in your AndroidManifest.xml.
 ```
 Pureprofile uses these permissions to receive and send survey requests and responses to Pureprofile.
 
-#### 6. Use Login API and obtain a login token to initialise the SDK
+#### 6. Add landscape mode support in AndroidManifest.xml
+Add the following to the activity used for the sdk in your AndroidManifest.xml.
+```
+<activity android:name=".activities.SDKActivity"
+    android:configChanges="orientation|screenSize"/>
+```
+This will allow landscape mode for surveys that require it.
+
+#### 7. Use Login API and obtain a login token to initialise the SDK
 The first step before accessing the Pureprofile SDK is to obtain a login token from Pureprofile. You can do that by calling Pureprofile's login API where you have to pass the following parameters in the POST call:
 
 Production service:
@@ -153,7 +161,7 @@ As part of the login process it is possible to encounter the 'membership limit r
 }
 ```
 
-#### 7. Call Pureprofile SDK initialisation functions in onCreate() of your Activity to activate SDK
+#### 8. Call Pureprofile SDK initialisation functions in onCreate() of your Activity to activate SDK
 After you link your project to all dependencies you can easily initialise the SDK. Once you added all dependencies then you can call Pureprofile SDK init() in onCreate() ( just after super.onCreate(savedInstanceState) ) passing the authentication token you received from the login process and you are ready to go. To start the sdk just call run() passing the activity context and a flag true if you want to display the SDK splash screen. If you require to test the sdk in development mode simply set the environment by calling setEnv(this, "dev") after you init the sdk. For production set the env to "prod" Below is a sample:
 ```
     @Override
@@ -167,7 +175,7 @@ After you link your project to all dependencies you can easily initialise the SD
     }
 ```
 
-#### 8. Implement PaymentListener in your sdk activity to process payments received from surveys
+#### 9. Implement PaymentListener in your sdk activity to process payments received from surveys
 Register your activity to implement the ```PaymentListener``` and listen for payment events. Simply call ```registerPaymentListener()``` and override ```onProcessPayment()``` that returns a com.pureprofile.sdk.events.PaymentEvent object with the payment details (date of payment, payment unique key, payment). Below is a sample:
 ```
     public class PaymentEvent {
@@ -201,7 +209,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-#### 9. Count of available/paid surveys
+#### 10. Count of available/paid surveys
 In order to obtain the total number of available surveys and total number of paid surveys you can use the following API call after you initialize the SDK:
 ```
 SdkApp.getInstance().init(this, Token.getToken(this));
