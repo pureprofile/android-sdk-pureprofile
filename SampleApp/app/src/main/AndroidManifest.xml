@@ -23,7 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.SDKActivity"/>
+        <activity android:name=".activities.SDKActivity"
+            android:configChanges="orientation|screenSize"/>
     </application>
 
 </manifest>

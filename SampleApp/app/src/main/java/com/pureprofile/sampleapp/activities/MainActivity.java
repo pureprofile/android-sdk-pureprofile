@@ -2,9 +2,11 @@ package com.pureprofile.sampleapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
+import com.android.volley.NetworkResponse;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,8 +30,7 @@ import static com.pureprofile.sampleapp.services.AuthService.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    protected String USER_EMAIL = "gsylaios+10@pureprofile.com";
-    protected String USER_KEY = "ea4928cf-0917-45e7-b4c7-ab9329943a71";
+    protected String USER_KEY = "b2852072-c0b6-4ebe-8e99-72875e4cf610";
     protected String PANEL_SECRET = "d0b2981c-3dfb-4855-8523-d94caad8da28";
     protected String PANEL_KEY = "e598da88-6749-4394-a2cd-662be94e9bec";
 
@@ -89,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
         params.addProperty("panelKey", PANEL_KEY);
         params.addProperty("panelSecret", PANEL_SECRET);
         params.addProperty("userKey", USER_KEY);
-        params.addProperty("email", USER_EMAIL);
 
         GsonRequest<Login> request = new GsonRequest<>(
                 Request.Method.POST, LOGIN_SERVICE, Login.class, null, params,
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                     if (token != null) {
                         Token.setToken(this, token);
                         SdkApp.getInstance().init(this, Token.getToken(this));
-                        SdkApp.getInstance().setEnv(this, "prod");
+                        SdkApp.getInstance().setEnv(this, "stage");
                         SdkApp.getInstance().getBadgeValues(this, badge -> {
                             mBadgeText.setText(String.valueOf(badge.total));
                             mBadgeText.setVisibility(View.VISIBLE);
@@ -106,7 +106,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 },
                 (error -> {
-                    if (error.networkResponse.statusCode == 403) {
+                    NetworkResponse response = error.networkResponse;
+                    if (response != null && error.networkResponse.statusCode == 403) {
                         try {
                             String json = new String(error.networkResponse.data, getString(R.string.charset));
                             Gson gson = new Gson();

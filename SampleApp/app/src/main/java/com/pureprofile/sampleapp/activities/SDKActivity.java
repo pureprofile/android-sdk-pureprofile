@@ -1,7 +1,7 @@
 package com.pureprofile.sampleapp.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 
 import com.pureprofile.sampleapp.R;
@@ -18,7 +18,7 @@ public class SDKActivity extends AppCompatActivity implements PaymentListener {
 
         SdkApp.getInstance().init(this, Token.getToken(this));
         SdkApp.getInstance().registerPaymentListener(this);
-        SdkApp.getInstance().setEnv(this, "prod");
+        SdkApp.getInstance().setEnv(this, "dev");
         SdkApp.getInstance().hasNavigation(false);
         SdkApp.getInstance().run(this, true);
     }
