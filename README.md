@@ -131,7 +131,7 @@ Service accepts and returns a JSON body, as specified:
 | panelKey      | String(UUID)  | Yes       | key which belongs to the panel you're trying to login user for
 | panelSecret   | String(UUID)  | Yes       | secret key assigned to panel (never reveal this to client app)
 | userKey       | String        | Yes       | unique identifier that does never change for a user
-| email         | String(Email) |           | email that can be used to match user
+| email         | String(Email) | Yes       | email that can be used to match user
 
 Response body:
 
