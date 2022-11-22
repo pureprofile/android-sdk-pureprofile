@@ -132,7 +132,7 @@ Response body:
 | ppToken       | String(UUID)  | Token provided to SDK so it can communicate with Pureprofile's servers
 
 
-The values of panelKey and panelSecret are provided by Pureprofile and are used to identify you as Pureprofile's partner. [Get in touch with us](mailto:product@pureprofile.com) to find out how to obtain the panel keys. 
+The values of `panelKey` and `panelSecret` are provided by Pureprofile and are used to identify you as Pureprofile's partner. [Get in touch with us](mailto:product@pureprofile.com) to find out how to obtain the panel keys. 
 
 The ```userKey``` is used for uniquely identifying each one of your users. It is recommended that a UUID is used as ```userKey``` value and that this UUID never changes so that we can always identify your users in our systems in order to offer them better targeted surveys with maximum yield. There is no restriction though as to the type of user key that is used which means that your user's email or phone number or any other identifier is also accepted. Beware though that in this case if the user identifier ever changes, for example when your user changes his/her email, the next time the user with the changed identifier is logged in to Pureprofile, a new Pureprofile user will be created which means that all targeting information we hold for the said user will no longer be usable and will have to be recreated. The ```email``` key can be used to match a ```userKey``` with an email.
 
