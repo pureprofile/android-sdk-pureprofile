@@ -116,22 +116,14 @@ Add the following to the activity used for the sdk in your AndroidManifest.xml.
 This will allow landscape mode for surveys that require it.
 
 #### 7. Use Login API and obtain a login token to initialise the SDK
-The first step before accessing the Pureprofile SDK is to obtain a login token from Pureprofile. You can do that by calling Pureprofile's login API where you have to pass the following parameters in the POST call:
-
-Production service:
-
-```
-POST https://pp-auth-api.pureprofile.com/api/v1/panel/login
-```
-
-Service accepts and returns a JSON body, as specified:
+The first step before accessing the Pureprofile SDK is to obtain a login token from Pureprofile. You can do that by calling Pureprofile's [login API](https://pp-auth-api.pureprofile.com/api-docs/#/panel/post_api_v1_panel_login) where you have to pass the following parameters in the POST call:
 
 | Property name | Type          | Mandatory | Description 
 |---------------|---------------|:---------:|-------------
 | panelKey      | String(UUID)  | Yes       | key which belongs to the panel you're trying to login user for
 | panelSecret   | String(UUID)  | Yes       | secret key assigned to panel (never reveal this to client app)
 | userKey       | String        | Yes       | unique identifier that does never change for a user
-| email         | String(Email) | Yes       | email that can be used to match user
+| email or emailHash | String | Yes       | user's email or hashed email
 
 Response body:
 
