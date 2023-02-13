@@ -30,9 +30,9 @@ import static com.pureprofile.sampleapp.services.AuthService.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    protected String USER_KEY = "b2852072-c0b6-4ebe-8e99-72875e4cf610";
-    protected String PANEL_SECRET = "d0b2981c-3dfb-4855-8523-d94caad8da28";
-    protected String PANEL_KEY = "e598da88-6749-4394-a2cd-662be94e9bec";
+    protected String USER_KEY = "c2852072-c0b6-4ebe-8e99-72875e4cf630";
+    protected String PANEL_SECRET = "c0e6b322-f654-4583-8202-3136504e7843";
+    protected String PANEL_KEY = "f986e3ac-32c9-42e9-944d-9801dbe28d97";
 
     private TextView mBadgeText;
 
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         JsonObject params = new JsonObject();
         params.addProperty("panelKey", PANEL_KEY);
         params.addProperty("panelSecret", PANEL_SECRET);
-        params.addProperty("userKey", USER_KEY);
+        params.addProperty("email", "gsylaios+sdk20@pureprofile.com");
 
         GsonRequest<Login> request = new GsonRequest<>(
                 Request.Method.POST, LOGIN_SERVICE, Login.class, null, params,
