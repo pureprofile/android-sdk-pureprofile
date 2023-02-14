@@ -2,9 +2,9 @@
 Pureprofile is a survey platform that delivers surveys through the web and mobile apps. The Pureprofile Android SDK is an easy to use library for developers who want to integrate Purerprofile's surveying platform into their Android apps.
 
 ### Requirements
-Minimum sdk version is 16.
+Minimum sdk version is 23.
 ```
-minSdkVersion 16
+minSdkVersion 23
 ```
 
 # android-sdk-pureprofile
