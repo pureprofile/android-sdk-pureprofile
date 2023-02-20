@@ -30,9 +30,14 @@ import static com.pureprofile.sampleapp.services.AuthService.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    protected String USER_KEY = "b2852072-c0b6-4ebe-8e99-72875e4cf610";
-    protected String PANEL_SECRET = "d0b2981c-3dfb-4855-8523-d94caad8da28";
-    protected String PANEL_KEY = "e598da88-6749-4394-a2cd-662be94e9bec";
+    /* Enter email or user identifier or both
+       replace with your panel key and secret **/
+
+    protected String EMAIL = "REPLACE_WITH_USER_EMAIL";
+    protected String USER_KEY = "REPLACE_WITH_USER_KEY";
+    protected String PANEL_KEY = "REPLACE_WITH_PANEL_KEY";
+
+    protected String PANEL_SECRET = "REPLACE_WITH_PANEL_SECRET";
 
     private TextView mBadgeText;
 
