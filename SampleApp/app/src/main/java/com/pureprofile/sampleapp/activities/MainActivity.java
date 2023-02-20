@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         JsonObject params = new JsonObject();
         params.addProperty("panelKey", PANEL_KEY);
         params.addProperty("panelSecret", PANEL_SECRET);
-        params.addProperty("userKey", USER_KEY);
+        params.addProperty("email", EMAIL);
 
         GsonRequest<Login> request = new GsonRequest<>(
                 Request.Method.POST, LOGIN_SERVICE, Login.class, null, params,
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     if (token != null) {
                         Token.setToken(this, token);
                         SdkApp.getInstance().init(this, Token.getToken(this));
-                        SdkApp.getInstance().setEnv(this, "dev");
+                        SdkApp.getInstance().setEnv(this, "prod");
                         SdkApp.getInstance().getBadgeValues(this, badge -> {
                             mBadgeText.setText(String.valueOf(badge.total));
                             mBadgeText.setVisibility(View.VISIBLE);
