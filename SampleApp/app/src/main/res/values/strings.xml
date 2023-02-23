@@ -15,4 +15,6 @@
         feed and surveys on an actual mobile device.</string>
     <string name="charset">UTF-8</string>
     <string name="generic_error">Oops! Something went wrong!</string>
+    <string name="old_sdk_button">Old SDK</string>
+    <string name="new_sdk_button">New SDK</string>
 </resources>

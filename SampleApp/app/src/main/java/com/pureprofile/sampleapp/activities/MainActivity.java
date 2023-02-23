@@ -4,13 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.android.volley.NetworkResponse;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -22,11 +19,12 @@ import com.pureprofile.sampleapp.model.Login;
 import com.pureprofile.sampleapp.model.Token;
 import com.pureprofile.sampleapp.services.ApiManager;
 import com.pureprofile.sampleapp.services.GsonRequest;
-import com.pureprofile.sdk.SdkApp;
 
 import java.io.UnsupportedEncodingException;
 
 import static com.pureprofile.sampleapp.services.AuthService.*;
+
+import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,22 +37,29 @@ public class MainActivity extends AppCompatActivity {
 
     protected String PANEL_SECRET = "REPLACE_WITH_PANEL_SECRET";
 
-    private TextView mBadgeText;
+    private Button oldSdkButton;
+    private Button newSdkButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        oldSdkButton = findViewById(R.id.old_sdk_button);
+        newSdkButton = findViewById(R.id.new_sdk_button);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        mBadgeText = findViewById(R.id.badge_text);
         loginRequest();
-        fab.setOnClickListener(v -> {
-            createToast(this.getString(R.string.panel_login));
+
+        oldSdkButton.setOnClickListener(v -> {
             if (Token.getToken(this) != null) {
                 startSdk();
+            }
+        });
+
+        newSdkButton.setOnClickListener(v -> {
+            if (Token.getToken(this) != null) {
+                startNewSdk();
             }
         });
     }
@@ -102,12 +107,8 @@ public class MainActivity extends AppCompatActivity {
                     String token = response.ppToken;
                     if (token != null) {
                         Token.setToken(this, token);
-                        SdkApp.getInstance().init(this, Token.getToken(this));
-                        SdkApp.getInstance().setEnv(this, "prod");
-                        SdkApp.getInstance().getBadgeValues(this, badge -> {
-                            mBadgeText.setText(String.valueOf(badge.total));
-                            mBadgeText.setVisibility(View.VISIBLE);
-                        });
+                        oldSdkButton.setEnabled(true);
+                        newSdkButton.setEnabled(true);
                     }
                 },
                 (error -> {
@@ -138,7 +139,16 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, SDKActivity.class);
             startActivity(intent);
         } catch (Exception e) {
-            Log.d("Launch error", e.getMessage());
+            Timber.tag("Launch error").d(e);
+        }
+    }
+
+    private void startNewSdk() {
+        try {
+            Intent intent = new Intent(MainActivity.this, JetSdkActivity.class);
+            startActivity(intent);
+        } catch (Exception e) {
+            Timber.tag("Launch error").d(e);
         }
     }
 }

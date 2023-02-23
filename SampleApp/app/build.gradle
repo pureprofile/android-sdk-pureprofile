@@ -1,5 +1,8 @@
 plugins {
     id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -19,11 +22,27 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    android {
-        compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_8
-            targetCompatibility JavaVersion.VERSION_1_8
-        }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+        allWarningsAsErrors = false
+        freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
+    }
+    buildFeatures {
+        compose true
+
+        // Disable unused AGP features
+        buildConfig false
+        aidl false
+        renderScript false
+        resValues false
+        shaders false
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion "1.4.0"
     }
 }
 
@@ -34,7 +53,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'com.android.volley:volley:1.2.1'
     implementation 'com.google.code.gson:gson:2.8.9'
-    implementation 'com.pureprofile.sdk:droid-sdk:2.0.32'
+    implementation 'com.pureprofile.sdk:droid-sdk:2.0.34'
+    implementation 'com.pureprofile.jet.sdk:jet-sdk:1.0.54'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

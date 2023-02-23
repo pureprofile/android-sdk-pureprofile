@@ -10,6 +10,8 @@ import com.pureprofile.sampleapp.model.Token;
 import com.pureprofile.sdk.events.PaymentEvent;
 import com.pureprofile.sdk.ui.listeners.PaymentListener;
 
+import timber.log.Timber;
+
 public class SDKActivity extends AppCompatActivity implements PaymentListener {
 
     @Override
@@ -26,7 +28,7 @@ public class SDKActivity extends AppCompatActivity implements PaymentListener {
     @Override
     public void onProcessPayment(PaymentEvent event) {
         // Handle payments received from Pureprofile paid surveys.
-        Log.i("payment", String.format(
+        Timber.tag("payment").i(String.format(
                 getResources().getString(
                         R.string.payment_info), event.key, event.payment, event.date));
     }
