@@ -272,7 +272,7 @@ Add the following to the activity used for the sdk in your AndroidManifest.xml.
 This will allow landscape mode for surveys that require it.
 
 ### Import Compose Pureprofile SDK class
-Import Pureprofile classes with the following lines at the top of your Activity’s class file:
+Import Pureprofile client class adding the following line at the top of your Activity’s class file:
 ```
 import com.pureprofile.jet.sdk.PureprofileClient
 ```
