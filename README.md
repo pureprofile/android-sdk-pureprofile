@@ -279,7 +279,7 @@ import com.pureprofile.jet.sdk.PureprofileClient
 
 ### Call Pureprofile Compose SDK initialisation functions in onCreate() of your Activity to start SDK
 Below is a sample to start the SDK. The ```onPayment``` event is fired when a successful payment is 
-received returning a PaymentEvent with the payment date, payment key and amount.
+received returning a PaymentEvent with the payment date, key and amount.
 ```
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
