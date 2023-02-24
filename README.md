@@ -256,12 +256,6 @@ dependencies {
 }
 ```
 
-### Import Compose Pureprofile SDK class
-Import Pureprofile classes with the following lines at the top of your Activity’s class file:
-```
-import com.pureprofile.jet.sdk.PureprofileClient
-```
-
 ### Add permissions to AndroidManifest.xml
 Add the following permissions in your AndroidManifest.xml.
 ```
@@ -276,6 +270,12 @@ Add the following to the activity used for the sdk in your AndroidManifest.xml.
     android:configChanges="orientation|screenSize"/>
 ```
 This will allow landscape mode for surveys that require it.
+
+### Import Compose Pureprofile SDK class
+Import Pureprofile classes with the following lines at the top of your Activity’s class file:
+```
+import com.pureprofile.jet.sdk.PureprofileClient
+```
 
 ### Call Pureprofile Compose SDK initialisation functions in onCreate() of your Activity to start SDK
 Below is a sample to start the SDK. The ```onPayment``` event is fired when a successful payment is 
