@@ -216,6 +216,94 @@ SdkApp.getInstance().getBadgeValues(this, new BadgeListener() {
 Through the callback you will receive two integers, one for all available surveys and one for the count of paid surveys.
 
 ## SDK (Jetpack Compose)
+A new SDK in Jetpack Compose is now available. This is a beta release of the survey platform.
+
+### Requirements
+Minimum sdk version is 23.
+```
+minSdkVersion 23
+```
+
+### Set up Compose
+To start using the Compose SDK you need to add some build configurations to your project. Add the following definition 
+to your app's ```build.gradle``` file:
+
+```
+android {
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.2"
+    }
+}
+```
+
+```
+allprojects {
+    repositories {
+        maven { url "https://android-sdk.pureprofile.com/artifactory/libs-release-local-jet" }
+    }
+}
+```
+
+Retrieve Pureprofile Compose SDK through maven() by adding the following line in your project build.gradle:
+
+```
+dependencies {
+  implementation 'com.pureprofile.jet.sdk:jet-sdk:1.0.54'
+}
+```
+
+### Import Compose Pureprofile SDK class
+Import Pureprofile classes with the following lines at the top of your Activity’s class file:
+```
+import com.pureprofile.jet.sdk.PureprofileClient
+```
+
+### Add permissions to AndroidManifest.xml
+Add the following permissions in your AndroidManifest.xml.
+```
+<uses-permission android:name="android.permission.INTERNET"/>
+```
+Pureprofile uses these permissions to receive and send survey requests and responses to Pureprofile.
+
+### Add landscape mode support in AndroidManifest.xml
+Add the following to the activity used for the sdk in your AndroidManifest.xml.
+```
+<activity android:name=".activities.yourActivity"
+    android:configChanges="orientation|screenSize"/>
+```
+This will allow landscape mode for surveys that require it.
+
+### Call Pureprofile Compose SDK initialisation functions in onCreate() of your Activity to start SDK
+Below is a sample to start the SDK. The ```onPayment``` event is fired when a successful payment is 
+received returning a PaymentEvent with the payment date, payment key and amount.
+```
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+
+        setContent {
+            val token = Token.getToken(this)
+            token?.let {
+                PureprofileClient(
+                    token = it,
+                    onPayment = { event ->
+                        Timber.d("Payment received: ${event.payment}")
+                    }
+                )
+            }
+        }
+    }
+```
+
+
+
+
 
 
 
