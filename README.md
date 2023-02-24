@@ -214,3 +214,8 @@ SdkApp.getInstance().getBadgeValues(this, new BadgeListener() {
 });
 ```
 Through the callback you will receive two integers, one for all available surveys and one for the count of paid surveys.
+
+## SDK (Jetpack Compose)
+
+
+
