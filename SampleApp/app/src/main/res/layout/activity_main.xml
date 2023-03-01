@@ -23,7 +23,7 @@
     <include layout="@layout/content_main" />
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_2"
         android:layout_gravity="center">
@@ -32,7 +32,9 @@
             android:id="@+id/old_sdk_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:enabled="false"
+            android:textAllCaps="false"
             android:text="@string/old_sdk_button"/>
 
         <com.google.android.material.button.MaterialButton
@@ -40,6 +42,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/old_sdk_button"
+            android:layout_centerHorizontal="true"
+            android:textAllCaps="false"
             android:layout_marginTop="@dimen/dimen_8"
             android:enabled="false"
             android:text="@string/new_sdk_button"/>
