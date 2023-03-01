@@ -185,14 +185,14 @@ Register your activity to implement the ```PaymentListener``` and listen for pay
 ```
 The transactions API can also be used for querying Pureprofile about a transaction. The payment key (as provided in the PaymentEvent will have to be passed as a parameter to the end-point:
 ```
-GET https://staging-ah-api.pureprofile.com/api/v1/pp-au/transactions/<payment-uuid> HTTP/1.1
+GET https://staging-ah-api.pureprofile.com/api/v1/pp-au/transactions/<transaction-uuid> HTTP/1.1
 
 HTTP/1.1 200 OK
 
 {
     "status": "ok",
     "data": {
-        "uuid": "payment-uuid",
+        "uuid": "transaction-uuid",
         "value": 1.05,
         "createdAt": "2018-11-14T23:33:36+11:00",
         "campaignUuid": "campaign-uuid"
