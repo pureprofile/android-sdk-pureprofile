@@ -19,7 +19,7 @@ minSdkVersion 23
 7. Call Pureprofile SDK initialisation function in onCreate() of your Activity to activate SDK
 8. Implement ```PaymentListener``` in your sdk activity to process payments received from surveys.
 
-> Requirements: Pureprofile Android SDK works with Android 16 (4.1) and above.
+> Requirements: Pureprofile Android SDK works with Android 23 (6.0) and above.
 
 ## Steps detail
 
