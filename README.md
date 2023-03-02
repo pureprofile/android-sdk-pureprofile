@@ -4,7 +4,7 @@ Pureprofile is a survey platform that delivers surveys through the web and mobil
 ### Requirements
 Minimum sdk version is 23.
 ```
-minSdkVersion 23
+minSdkVersion 21
 ```
 
 # android-sdk-pureprofile
@@ -19,7 +19,7 @@ minSdkVersion 23
 7. Call Pureprofile SDK initialisation function in onCreate() of your Activity to activate SDK
 8. Implement ```PaymentListener``` in your sdk activity to process payments received from surveys.
 
-> Requirements: Pureprofile Android SDK works with Android 16 (4.1) and above.
+> Requirements: Pureprofile Android SDK works with Android 21 (5.0) and above.
 
 ## Steps detail
 
@@ -48,7 +48,7 @@ Retrieve Pureprofile through maven() by adding the following line in your projec
 
 ```
 dependencies {
-  implementation 'com.pureprofile.sdk:droid-sdk:2.0.30'
+  implementation 'com.pureprofile.sdk:droid-sdk:2.0.35'
 }
 ```
 
@@ -185,14 +185,14 @@ Register your activity to implement the ```PaymentListener``` and listen for pay
 ```
 The transactions API can also be used for querying Pureprofile about a transaction. The payment key (as provided in the PaymentEvent will have to be passed as a parameter to the end-point:
 ```
-GET https://staging-ah-api.pureprofile.com/api/v1/pp-au/transactions/<payment-uuid> HTTP/1.1
+GET https://staging-ah-api.pureprofile.com/api/v1/pp-au/transactions/<transaction-uuid> HTTP/1.1
 
 HTTP/1.1 200 OK
 
 {
     "status": "ok",
     "data": {
-        "uuid": "payment-uuid",
+        "uuid": "transaction-uuid",
         "value": 1.05,
         "createdAt": "2018-11-14T23:33:36+11:00",
         "campaignUuid": "campaign-uuid"
@@ -219,9 +219,9 @@ Through the callback you will receive two integers, one for all available survey
 A new SDK in Jetpack Compose is now available. This is a beta release of the survey platform.
 
 ### Requirements
-Minimum sdk version is 23.
+Minimum sdk version is 21.
 ```
-minSdkVersion 23
+minSdkVersion 21
 ```
 
 ### Set up Compose
@@ -252,7 +252,7 @@ Retrieve Pureprofile Compose SDK through maven() by adding the following line in
 
 ```
 dependencies {
-  implementation 'com.pureprofile.jet.sdk:jet-sdk:1.0.54'
+  implementation 'com.pureprofile.jet.sdk:jet-sdk:1.0.56'
 }
 ```
 
