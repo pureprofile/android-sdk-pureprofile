@@ -15,9 +15,10 @@ minSdkVersion 21
 3. Pureprofile SDK dependencies
 4. Import Pureprofile SDK classes
 5. Add permissions to AndroidManifest.xml
-6. Use Login API to obtain a login token to initialise the SDK
-7. Call Pureprofile SDK initialisation function in onCreate() of your Activity to activate SDK
-8. Implement ```PaymentListener``` in your sdk activity to process payments received from surveys.
+6. Add landscape mode support in AndroidManifest.xml
+7. Use Login API to obtain a login token to initialise the SDK
+8. Call Pureprofile SDK initialisation function in onCreate() of your Activity to activate SDK
+9. Implement ```PaymentListener``` in your sdk activity to process payments received from surveys.
 
 > Requirements: Pureprofile Android SDK works with Android 21 (5.0) and above.
 
@@ -185,7 +186,7 @@ Register your activity to implement the ```PaymentListener``` and listen for pay
 ```
 The transactions API can also be used for querying Pureprofile about a transaction. The payment key (as provided in the PaymentEvent will have to be passed as a parameter to the end-point:
 ```
-GET https://staging-ah-api.pureprofile.com/api/v1/pp-au/transactions/<transaction-uuid> HTTP/1.1
+GET https://staging-ah-api.pureprofile.com/api/v3/transactions/<transaction-uuid>?pp-token=<pp-token> HTTP/1.1
 
 HTTP/1.1 200 OK
 
