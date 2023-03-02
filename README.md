@@ -48,7 +48,7 @@ Retrieve Pureprofile through maven() by adding the following line in your projec
 
 ```
 dependencies {
-  implementation 'com.pureprofile.sdk:droid-sdk:2.0.30'
+  implementation 'com.pureprofile.sdk:droid-sdk:2.0.35'
 }
 ```
 
@@ -219,9 +219,9 @@ Through the callback you will receive two integers, one for all available survey
 A new SDK in Jetpack Compose is now available. This is a beta release of the survey platform.
 
 ### Requirements
-Minimum sdk version is 23.
+Minimum sdk version is 21.
 ```
-minSdkVersion 23
+minSdkVersion 21
 ```
 
 ### Set up Compose
@@ -252,7 +252,7 @@ Retrieve Pureprofile Compose SDK through maven() by adding the following line in
 
 ```
 dependencies {
-  implementation 'com.pureprofile.jet.sdk:jet-sdk:1.0.54'
+  implementation 'com.pureprofile.jet.sdk:jet-sdk:1.0.56'
 }
 ```
 
