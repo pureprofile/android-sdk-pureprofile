@@ -169,7 +169,11 @@ After you link your project to all dependencies you can easily initialise the SD
 ```
 
 #### 9. Implement PaymentListener in your sdk activity to process payments received from surveys
-Register your activity to implement the ```PaymentListener``` and listen for payment events. Simply call ```registerPaymentListener()``` and override ```onProcessPayment()``` that returns a com.pureprofile.sdk.events.PaymentEvent object with the payment details (date of payment, payment unique key, payment). Below is a sample:
+Register your activity to implement the ```PaymentListener``` and listen for payment events. Simply call ```registerPaymentListener()``` and override ```onProcessPayment()``` that returns a com.pureprofile.sdk.events.PaymentEvent object with the payment details (date of payment, payment unique key, payment). 
+
+*Please note that PaymentEvent is a subset of a Transaction object which our back-end uses, its uuid key should be used in places where transaction UUID is desired*
+
+Below is a sample:
 ```
     public class PaymentEvent {
         public String date;
@@ -184,9 +188,10 @@ Register your activity to implement the ```PaymentListener``` and listen for pay
                 Toast.LENGTH_SHORT).show();
     }
 ```
-The transactions API can also be used for querying Pureprofile about a transaction. The payment key (as provided in the PaymentEvent will have to be passed as a parameter to the end-point:
+
+The transactions API can also be used for querying Pureprofile details about a payment/transaction. The payment key, which is also a transaction UUID, will have to be passed as a parameter to the end-point as well as user's authentication token:
 ```
-GET https://staging-ah-api.pureprofile.com/api/v3/transactions/<transaction-uuid>?pp-token=<pp-token> HTTP/1.1
+GET https://pp-us-ah-api.pureprofile.com/api/v3/transactions/<transaction-uuid>?pp-token=<pp-token> HTTP/1.1
 
 HTTP/1.1 200 OK
 
@@ -201,6 +206,8 @@ HTTP/1.1 200 OK
     "ppToken": "pureprofile-token"
 }
 ```
+
+Be aware, using PaymentEvent DOES NOT give you a full picture about all users transactions on a panel, as it covers only direct transactions when user completes a survey. Other transactions might be issued by automatic workers or customer support. To get information about all transactions happening on a panel, you have to implement a process that will query our back-end API. More information can be found here: [https://pp-us-ah-api.pureprofile.com/api-docs/#/panel/get_api_v1_public_transactions_panel__panelUuid_](https://pp-us-ah-api.pureprofile.com/api-docs/#/panel/get_api_v1_public_transactions_panel__panelUuid_)
 
 #### 10. Count of available/paid surveys
 In order to obtain the total number of available surveys and total number of paid surveys you can use the following API call after you initialize the SDK:
