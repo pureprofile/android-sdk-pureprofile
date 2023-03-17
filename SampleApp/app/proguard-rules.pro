@@ -2,6 +2,10 @@
 -dontwarn com.pureprofile.sdk.**
 -keep class com.pureprofile.sdk.** { *; }
 
+# Pureprofile Jet SDK classes
+-dontwarn com.pureprofile.jet.sdk.**
+-keep class com.pureprofile.jet.sdk.** { *; }
+
 # Your application classes that will be serialized/deserialized over Gson for sdk login
 -keep class com.pureprofile.sampleapp.model.** { *; }
 

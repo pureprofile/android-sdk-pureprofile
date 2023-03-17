@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         params.addProperty("panelKey", PANEL_KEY);
         params.addProperty("panelSecret", PANEL_SECRET);
         params.addProperty("email", EMAIL);
+        params.addProperty("acceptedTermsConditions", true);
 
         GsonRequest<Login> request = new GsonRequest<>(
                 Request.Method.POST, LOGIN_SERVICE, Login.class, null, params,
