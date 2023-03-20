@@ -17,11 +17,10 @@ public class SDKActivity extends AppCompatActivity implements PaymentListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SdkApp.getInstance().init(this, Token.getToken(this));
+        SdkApp.getInstance().init(this, Token.getToken(this), false);
         SdkApp.getInstance().registerPaymentListener(this);
         SdkApp.getInstance().setEnv(this, "prod");
         SdkApp.getInstance().hasNavigation(false);
-        SdkApp.getInstance().acceptedTerms(this, true);
         SdkApp.getInstance().run(this, true);
     }
 
