@@ -261,6 +261,7 @@ Retrieve Pureprofile Compose SDK through maven() by adding the following line in
 ```
 dependencies {
   implementation 'com.pureprofile.jet.sdk:jet-sdk:1.0.62'
+  implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1'
 }
 ```
 
