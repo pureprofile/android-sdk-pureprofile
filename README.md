@@ -243,7 +243,11 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.2"
+        kotlinCompilerExtensionVersion = "1.4.4"
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 ```
@@ -260,7 +264,7 @@ Retrieve Pureprofile Compose SDK through maven() by adding the following line in
 
 ```
 dependencies {
-  implementation 'com.pureprofile.jet.sdk:jet-sdk:1.0.73'
+  implementation 'com.pureprofile.jet.sdk:jet-sdk:1.0.75'
 }
 ```
 
