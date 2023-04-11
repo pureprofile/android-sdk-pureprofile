@@ -49,7 +49,7 @@ Retrieve Pureprofile through maven() by adding the following line in your projec
 
 ```
 dependencies {
-  implementation 'com.pureprofile.sdk:droid-sdk:2.0.43'
+  implementation 'com.pureprofile.sdk:droid-sdk:2.0.44'
 }
 ```
 
@@ -264,7 +264,7 @@ Retrieve Pureprofile Compose SDK through maven() by adding the following line in
 
 ```
 dependencies {
-  implementation 'com.pureprofile.jet.sdk:jet-sdk:1.0.75'
+  implementation 'com.pureprofile.jet.sdk:jet-sdk:1.0.77'
 }
 ```
 
