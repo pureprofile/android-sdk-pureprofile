@@ -31,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
     /* Enter email or user identifier or both
        replace with your panel key and secret **/
 
-    protected String EMAIL = "gsylaios+sdk21@pureprofile.com";
+    protected String EMAIL = "REPLACE_WITH_USER_EMAIL";
     protected String USER_KEY = "REPLACE_WITH_USER_KEY";
-    protected String PANEL_KEY = "0e15ec1c-9bed-4a5e-b32a-57b05fd23f6d";
+    protected String PANEL_KEY = "REPLACE_WITH_PANEL_KEY";
 
-    protected String PANEL_SECRET = "3602c19e-1be9-4a1b-b571-50d9daf4a945";
+    protected String PANEL_SECRET = "REPLACE_WITH_PANEL_SECRET";
 
     private Button oldSdkButton;
     private Button newSdkButton;
