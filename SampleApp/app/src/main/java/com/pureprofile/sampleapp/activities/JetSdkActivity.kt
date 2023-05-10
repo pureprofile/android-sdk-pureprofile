@@ -27,7 +27,6 @@ class JetSdkActivity : ComponentActivity() {
             token?.let {
                 PureprofileClient(
                     token = it,
-                    environment = Environment.Development,
                     onPayment = { event ->
                         Timber.d("Payment received: ${event.payment}")
                     }
