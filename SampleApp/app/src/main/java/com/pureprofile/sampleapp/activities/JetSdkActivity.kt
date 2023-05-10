@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import com.pureprofile.jet.sdk.PureprofileClient
+import com.pureprofile.jet.sdk.util.Environment
 import com.pureprofile.sampleapp.model.Token
 import timber.log.Timber
 
@@ -26,6 +27,7 @@ class JetSdkActivity : ComponentActivity() {
             token?.let {
                 PureprofileClient(
                     token = it,
+                    environment = Environment.Development,
                     onPayment = { event ->
                         Timber.d("Payment received: ${event.payment}")
                     }
