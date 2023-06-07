@@ -274,6 +274,7 @@ You need to add rules proguard-rules.pro when generating apk when ``minifyEnable
 -dontwarn com.pureprofile.jet.sdk.**
 -keep class com.pureprofile.jet.sdk.** { *; }
 
+# Retrofit proguard rules
 # Retrofit does reflection on generic parameters. InnerClasses is required to use Signature and
 # EnclosingMethod is required to use InnerClasses.
 -keepattributes Signature, InnerClasses, EnclosingMethod
