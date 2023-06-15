@@ -224,7 +224,7 @@ SdkApp.getInstance().getBadgeValues(this, new BadgeListener() {
 Through the callback you will receive two integers, one for all available surveys and one for the count of paid surveys.
 
 ## SDK (Jetpack Compose)
-A new SDK in Jetpack Compose is now available. This is a beta release of the survey platform.
+A new SDK in Jetpack Compose is now available.
 
 ### Requirements
 Minimum sdk version is 21.
