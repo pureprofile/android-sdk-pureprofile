@@ -243,11 +243,11 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.7"
+        kotlinCompilerExtensionVersion = "1.4.0"
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
 ```
@@ -264,7 +264,7 @@ Retrieve Pureprofile Compose SDK through maven() by adding the following line in
 
 ```
 dependencies {
-  implementation 'com.pureprofile.jet.sdk:jet-sdk:1.0.93'
+  implementation 'com.pureprofile.jet.sdk:jet-sdk:2.0.6'
 }
 ```
 #### Proguard rules
@@ -321,8 +321,18 @@ You need to add rules proguard-rules.pro when generating apk when ``minifyEnable
 -if interface * { @retrofit2.http.* public *** *(...); }
 -keep,allowoptimization,allowshrinking,allowobfuscation class <3>
 
+# With R8 full mode generic signatures are stripped for classes that are not kept.
+-keep,allowobfuscation,allowshrinking class retrofit2.Response
+
 # Animal Sniffer compileOnly dependency to ensure APIs are compatible with older versions of Java.
 -dontwarn org.codehaus.mojo.animal_sniffer.*
+
+# This is also needed for R8 in compat mode since multiple
+# optimizations will remove the generic signature such as class
+# merging and argument removal. See:
+# https://r8.googlesource.com/r8/+/refs/heads/main/compatibility-faq.md#troubleshooting-gson-gson
+-keep class com.google.gson.reflect.TypeToken { *; }
+-keep class * extends com.google.gson.reflect.TypeToken
 ```
 
 ### Add permissions to AndroidManifest.xml
@@ -363,7 +373,8 @@ received returning a PaymentEvent with the payment date, key and amount.
                     token = it,
                     onPayment = { event ->
                         Timber.d("Payment received: ${event.payment}")
-                    }
+                    },
+                    onExit = {} // event when exiting the SDK
                 )
             }
         }
