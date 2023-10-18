@@ -7,7 +7,7 @@ Minimum sdk version is 23.
 minSdkVersion 21
 ```
 
-# android-sdk-pureprofile
+# android-sdk-pureprofile (deprecated - use the new version below)
 
 #### Quick guide of Android SDK Pureprofile
 1. Register as a Pureprofile partner, create a panel and copy panel key
