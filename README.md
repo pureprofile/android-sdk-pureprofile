@@ -7,7 +7,8 @@ Minimum sdk version is 23.
 minSdkVersion 21
 ```
 
-# android-sdk-pureprofile (deprecated - use the new version [below](https://github.com/pureprofile/android-sdk-pureprofile/blob/master/README.md#sdk-jetpack-compose))
+# android-sdk-pureprofile
+#### (deprecated - use the new [version](https://github.com/pureprofile/android-sdk-pureprofile/blob/master/README.md#sdk-jetpack-compose)) below
 
 #### Quick guide of Android SDK Pureprofile
 1. Register as a Pureprofile partner, create a panel and copy panel key
