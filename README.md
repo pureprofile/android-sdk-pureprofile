@@ -375,7 +375,9 @@ received returning a PaymentEvent with the payment date, key and amount.
                     onPayment = { event ->
                         Timber.d("Payment received: ${event.payment}")
                     },
-                    onExit = {} // event when exiting the SDK
+                    onExit = {
+                        Timber.d("Pureprofile has exited")
+                    }
                 )
             }
         }
