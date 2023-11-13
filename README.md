@@ -265,11 +265,11 @@ Retrieve Pureprofile Compose SDK through maven() by adding the following line in
 
 ```
 dependencies {
-  implementation 'com.pureprofile.jet.sdk:jet-sdk:2.0.19'
+  implementation 'com.pureprofile.jet.sdk:jet-sdk:2.0.25'
 }
 ```
 #### Proguard rules
-You need to add rules proguard-rules.pro when generating apk when ``minifyEnabled true``.
+You need to add rules to proguard-rules.pro when generating apk with ``minifyEnabled true``.
 ```
 # Pureprofile sdk classes
 -dontwarn com.pureprofile.jet.sdk.**
