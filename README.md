@@ -265,7 +265,7 @@ Retrieve Pureprofile Compose SDK through maven() by adding the following line in
 
 ```
 dependencies {
-  implementation 'com.pureprofile.jet.sdk:jet-sdk:2.0.19'
+  implementation 'com.pureprofile.jet.sdk:jet-sdk:2.0.25'
 }
 ```
 #### Proguard rules
